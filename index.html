@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="أفضل عروض اللابتوبات في الجزائر - جودة عالية، أسعار منافسة، توصيل سريع لجميع الولايات">
+    <title>LaptopCITY - مدينة اللابتوب</title>
+
+    <!-- Google Font Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6Lfgft8rAAAAAF7IiVk0-LjPvlGvu29VO8j8eE5r"></script>
+
+    <style>
+        * {
+            font-family: 'Cairo', sans-serif;
+        }
+
+        /* Beige color palette */
+        :root {
+            --beige-50: #faf8f5;
+            --beige-100: #f5f1e8;
+            --beige-200: #ebe3d5;
+            --beige-300: #ddd1bb;
+            --beige-400: #c9b896;
+            --beige-500: #b39f7a;
+            --beige-600: #9d8560;
+            --beige-700: #7d6a4d;
+            --beige-800: #5c4f39;
+            --accent: #8b6f47;
+        }
+
+        body {
+            background-color: var(--beige-50);
+            color: var(--beige-800);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--beige-600), var(--accent));
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(139, 111, 71, 0.3);
+        }
+
+        /* Gallery styles */
+        .gallery-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-slide {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .gallery-slide.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .thumbnail {
+            cursor: pointer;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .thumbnail.active,
+        .thumbnail:hover {
+            opacity: 1;
+            border-color: var(--beige-600);
+        }
+
+        /* FAQ Accordion */
+        .faq-item {
+            border-bottom: 1px solid var(--beige-200);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer.open {
+            max-height: 500px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        /* Sticky CTA on mobile */
+        @media (max-width: 768px) {
+            .sticky-cta {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                z-index: 50;
+                box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-l from-amber-50 to-stone-100 shadow-md sticky top-0 z-40">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-right">
+                <h1 class="text-2xl md:text-3xl font-bold text-amber-900">LaptopCITY</h1>
+                <p class="text-xs md:text-sm text-amber-700"></p>
+            </div>
+            <a href="#order-form" class="btn-primary text-white px-6 py-3 rounded-full font-bold text-sm md:text-base shadow-lg" aria-label="انتقل إلى نموذج الطلب">
+                اطلب الآن
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section with Gallery -->
+    <section class="py-8 md:py-16 bg-gradient-to-b from-amber-50 to-stone-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl md:text-5xl font-bold text-amber-900 mb-4">
+                    لابتوبات عالية الجودة بأفضل الأسعار
+                </h2>
+                <p class="text-lg md:text-xl text-amber-800">
+                    احصل على أفضل العروض مع الدفع عند الاستلام
+                </p>
+            </div>
+
+            <span class="inline-block bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold mb-4">
+                عرض محدود - لفترة قصيرة فقط
+            </span>
+
+            <div class="mb-8">
+                <p class="text-5xl md:text-6xl font-bold text-amber-900 mb-2">145,000 د.ج</p>
+            </div>
+            <!-- Manual Gallery -->
+            <div class="max-w-5xl mx-auto">
+                <div class="gallery-container bg-white rounded-xl shadow-lg overflow-hidden flex flex-col gap-4">
+                    <!-- Slide 1 -->
+                    <div class="gallery-slide active" data-slide="0">
+                        <img src="https://scontent.fqfd1-1.fna.fbcdn.net/v/t39.30808-6/558912696_122193719834359901_8875915934011994272_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEfAR4if4w4BUl7a7v7Fr64TXWT6hdgQihNdZPqF2BCKCyy01KYWnG4PVNkVnqUraA&_nc_ohc=p3lwEcCimzUQ7kNvwEDhvaH&_nc_oc=AdmIStACyX39nqZSLqtZ89RefpETtDkXpdndtZqaMCrvOhH2iX0f1k-xb6z8iUm8Z-4&_nc_zt=23&_nc_ht=scontent.fqfd1-1.fna&_nc_gid=eS_uxtKiRZ4JnoP2AN0flg&oh=00_Aff7gYq2-XnlIIoOJhJVX6E5IwUQmoQ-H-KkbNTQey-UlA&oe=68F5E9FA" alt="لابتوب حديث للأعمال" class="w-full h-[400px] mx-auto object-cover rounded-lg">
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="gallery-slide" data-slide="1">
+                        <img src="https://scontent.fqfd1-1.fna.fbcdn.net/v/t39.30808-6/558418453_122193719810359901_645206627609651901_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHqN6uDUAe4VCElc5OEkVFJ5xK2JRJvdFfnErYlEm90VyUCOrpeyKKXsq2vjls2ehM&_nc_ohc=2rpzxX3IuakQ7kNvwGks8eX&_nc_oc=AdluFn8sg4Nop25668E-qL2J5OCJ1OwpkjrNs3uleJUo0kzLRp6mSPzb1oE1uIQC1wQ&_nc_zt=23&_nc_ht=scontent.fqfd1-1.fna&_nc_gid=cJdgHE5QgKLh8AvfBOWa0A&oh=00_AffY5eyGC4GgjsZqAzOh0ccs2HBIrQwA8Q4U3yWLcvm33A&oe=68F5FFD1" alt="لابتوب للألعاب" class="w-full h-[400px] mx-auto object-cover rounded-lg">
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="gallery-slide" data-slide="2">
+                        <img src="https://scontent.fqfd1-2.fna.fbcdn.net/v/t39.30808-6/558442191_122193719798359901_1340289415486455541_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEwOptOGhAILgj33RG6URohQlNITBDbTANCU0hMENtMA0MRnEF8Q6SDj5IqrBK6cUM&nc_ohc=ndjeJbXz8q4Q7kNvwEE3KFO&_nc_oc=AdlcKtBdE82hyPlCmlrOaDnuJhC1Z8E5_W_z8Hxs6Ql65JoEtNxhMUw_K22n1G_Ka1w&_nc_zt=23&_nc_ht=scontent.fqfd1-2.fna&_nc_gid=5uO4Ep-5CUg4OGiuwI-hMw&oh=00_AfcgQWkP4huaxbtTWoC6icrZn0uH7FxLcWul6Wdyqgz9iQ&oe=68F611A8" alt="لابتوب خفيف للطلاب" class="w-full h-[400px] mx-auto object-cover rounded-lg">
+                    </div>
+                    <!-- Slide 4 -->
+                    <div class="gallery-slide" data-slide="3">
+                        <img src="https://scontent.fqfd1-1.fna.fbcdn.net/v/t39.30808-6/556017040_122193113858359901_3071676382154937620_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeF31t9jIJyONvyqvsh_kqH3or2OEdVDFxGivY4R1UMXEWCKSEGlXmusWP-ic0vlU94&nc_ohc=zVZYgr-yvd4Q7kNvwHM5Boh&_nc_oc=AdmPRCbp4XgWQrgiuTyYtE_b_peTZTAv60GgLSfHgviLyjERhPNiSI87CaX-12opfww&nc_zt=23&_nc_ht=scontent.fqfd1-1.fna&_nc_gid=XRAVadU1vuT-nYHK5qLqcw&oh=00_Aff7zmGwMMT4_cQNn9Sj2Tj84pIyWMJrSbxwcJjQ7u-DXg&oe=68F5EAE3" alt="لابتوب 2 في 1" class="w-full h-[400px] mx-auto object-cover rounded-lg">
+                    </div>
+                    <!-- Slide 5 -->
+                    <div class="gallery-slide" data-slide="4">
+                        <img src="https://scontent.fqfd1-2.fna.fbcdn.net/v/t39.30808-6/557315643_122193113894359901_713144559234662424_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEQp2Qm8fL5-dZs_UpyH7QvpdrNwqib1fml2s3CqJvV-aRaZeheqU14XizZxSB2UPU&nc_ohc=uzVj69e1x7AQ7kNvwFlDFK9&_nc_oc=AdmIfu0AjgChNnlPCyg-a82-ul2d24Y-VUVSUUZnED6iWL5KRETCYTKX5hjubGT71a8&_nc_zt=23&_nc_ht=scontent.fqfd1-2.fna&_nc_gid=yDbqjl0f8wk6kjuI7aZn-A&oh=00_AffP5csLG9Uvkb2UckjX1FFh8-k4oMhvZBV1XAFCiyYfGg&oe=68F60C72" alt="لابتوب للتصميم" class="w-full h-[400px] mx-auto object-cover rounded-lg">
+                    </div>
+                    <!-- Slide 6 -->
+                    <div class="gallery-slide" data-slide="5">
+                        <img src="https://scontent.fqfd1-1.fna.fbcdn.net/v/t39.30808-6/556433766_122193113870359901_1934683667266812350_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeE8vWam4y-kNdqoCxx7XXD3HY9tvaUNNIUdj229pQ00hWo6yL6lVPi26htT-_uRXTY&nc_ohc=_Rs79eruZK8Q7kNvwFiU2CR&_nc_oc=AdmDL8-xjDERdlf0h8hNZFkFMGVKCIk1fBgLw01WmwtmqL7qze5sYWiFU6kSRZJOmJw&_nc_zt=23&_nc_ht=scontent.fqfd1-1.fna&_nc_gid=VgavEzYv2RVVk9dxT16t6w&oh=00_AffkDHXW4YGllgCJv36jmuJk1wDX9AYxbJO8xv0P1d6bSA&oe=68F5F77F" alt="لابتوب اقتصادي" class="w-full h-[400px] mx-auto object-cover rounded-lg">
+                    </div>
+                    <!-- Navigation Buttons -->
+                    <button class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-amber-900 rounded-full p-3 shadow-lg transition" onclick="changeSlide(-1)" aria-label="الصورة السابقة">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                    <button class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-amber-900 rounded-full p-3 shadow-lg transition" onclick="changeSlide(1)" aria-label="الصورة التالية">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                </div>
+                <!-- Thumbnails -->
+                <div class="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-4 mt-4">
+                    <img src="img/image1.jpg" class="thumbnail active rounded-lg cursor-pointer h-16 md:h-24 w-full object-cover" onclick="goToSlide(0)" alt="معاينة 1">
+                    <img src="https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=200&h=150&fit=crop" class="thumbnail rounded-lg cursor-pointer h-16 md:h-24 w-full object-cover" onclick="goToSlide(1)" alt="معاينة 2">
+                    <img src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=200&h=150&fit=crop" class="thumbnail rounded-lg cursor-pointer h-16 md:h-24 w-full object-cover" onclick="goToSlide(2)" alt="معاينة 3">
+                    <img src="https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?w=200&h=150&fit=crop" class="thumbnail rounded-lg cursor-pointer h-16 md:h-24 w-full object-cover" onclick="goToSlide(3)" alt="معاينة 4">
+                    <img src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=200&h=150&fit=crop" class="thumbnail rounded-lg cursor-pointer h-16 md:h-24 w-full object-cover" onclick="goToSlide(4)" alt="معاينة 5">
+                    <img src="https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=200&h=150&fit=crop" class="thumbnail rounded-lg cursor-pointer h-16 md:h-24 w-full object-cover" onclick="goToSlide(5)" alt="معاينة 6">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="py-12 md:py-20 bg-gradient-to-b from-amber-100 to-stone-100" id="desciption">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto bg-white rounded-3xl shadow-2xl p-8 md:p-12 text-center">
+                <div class="bg-amber-50 rounded-xl p-6 mb-8 text-right">
+                    <h3 class="font-bold text-xl text-amber-900 mb-4">المواصفات:</h3>
+                    <ul class="space-y-2 text-amber-800">
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-green-600 ml-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            معالج Intel Core i7 الجيل الحادي عشر
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-green-600 ml-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            ذاكرة عشوائية 16GB DDR4
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-green-600 ml-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            قرص صلب SSD 512GB
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-green-600 ml-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            شاشة 15.6 بوصة Full HD IPS
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-green-600 ml-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            كرت شاشة مدمج Intel Iris Xe
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-green-600 ml-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            نظام Windows 11 الأصلي
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Form Section -->
+    <section class="py-12 md:py-20 bg-white scroll-mt-24" id="order-form">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-amber-900 mb-4">
+                        أكمل طلبك الآن
+                    </h2>
+                    <p class="text-lg text-amber-800">
+                        املأ النموذج وسنتصل بك خلال 24 ساعة للتأكيد
+                    </p>
+                </div>
+
+                <form id="orderForm" class="bg-amber-50 rounded-2xl shadow-xl p-6 md:p-10">
+                    <!-- الاسم الكامل -->
+                    <div class="mb-6">
+                        <label for="fullName" class="block text-amber-900 font-bold mb-2">
+                            الاسم الكامل <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" id="fullName" name="fullName" required class="w-full px-4 py-3 rounded-lg border-2 border-amber-200 focus:border-amber-500 focus:outline-none" placeholder="مثال: أحمد بن محمد" />
+                    </div>
+
+                    <!-- رقم الهاتف -->
+                    <div class="mb-6 flex items-end justify-between gap-4">
+                        <div class="flex-1">
+                            <label for="phone" class="block text-amber-900 font-bold mb-2">
+                                رقم الهاتف <span class="text-red-500">*</span>
+                            </label>
+                            <input type="tel" id="phone" name="phone" required pattern="^(0|\\+213)[5-7][0-9]{8}$" dir="ltr" class="w-full px-4 py-3 rounded-lg border-2 border-amber-200 focus:border-amber-500 focus:outline-none text-right" placeholder="+213 660 000 000" />
+                        </div>
+                    </div>
+
+                    <!-- الولاية -->
+                    <div class="mb-6">
+                        <label for="wilaya" class="block text-amber-900 font-bold mb-2">
+                            الولاية <span class="text-red-500">*</span>
+                        </label>
+                        <select id="wilaya" name="wilaya" required class="w-full px-4 py-3 rounded-lg border-2 border-amber-200 focus:border-amber-500 focus:outline-none">
+                            <option value="">اختر الولاية</option>
+                        </select>
+                        <div class="text-red-500 text-sm mt-1 hidden" id="wilayaError">
+                            الرجاء اختيار الولاية
+                        </div>
+                    </div>
+
+                    <!-- البلدية -->
+                    <div class="mb-6">
+                        <label for="commune" class="block text-amber-900 font-bold mb-2">
+                            البلدية <span class="text-red-500">*</span>
+                        </label>
+                        <select id="commune" name="commune" disabled required class="w-full px-4 py-3 rounded-lg border-2 border-amber-200 focus:border-amber-500 focus:outline-none">
+                            <option value="">اختر البلدية</option>
+                        </select>
+                        <div class="text-red-500 text-sm mt-1 hidden" id="communeError">
+                            الرجاء اختيار البلدية
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <label for="size" class="block text-amber-900 font-bold mb-2">
+                            المقاس <span class="text-red-500">*</span>
+                        </label>
+                        <select id="size" name="size" required class="w-full px-4 py-3 rounded-lg border-2 border-amber-200 focus:border-amber-500 focus:outline-none">
+                            <option value="">اختر المقاس</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="43">43</option>
+                            <option value="44">44</option>
+                            <option value="45">45</option>
+                            <option value="46">46</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-6">
+                        <label for="color" class="block text-amber-900 font-bold mb-3">
+                            اللون <span class="text-red-500">*</span>
+                        </label>
+
+                        <div id="color" class="flex flex-wrap gap-3">
+                            <!-- Noir -->
+                            <label class="cursor-pointer">
+                                <input type="radio" name="color" value="أسود" class="hidden peer" required>
+                                <div class="w-10 h-10 rounded-full border-4 border-transparent peer-checked:border-amber-500 bg-black transition"></div>
+                                <span class="block text-center text-sm mt-1 text-amber-900">أسود</span>
+                            </label>
+
+                            <!-- أبيض -->
+                            <label class="cursor-pointer">
+                                <input type="radio" name="color" value="أبيض" class="hidden peer" required>
+                                <div class="w-10 h-10 rounded-full border border-gray-400 bg-white peer-checked:border-amber-500 transition"></div>
+                                <span class="block text-center text-sm mt-1 text-amber-900">أبيض</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- الكمية -->
+                    <div class="mb-6">
+                        <label for="quantity" class="block text-amber-900 font-bold mb-2">
+                            الكمية <span class="text-red-500">*</span>
+                        </label>
+                        <input type="number" id="quantity" name="quantity" required min="1" max="10" value="1" class="w-full px-4 py-3 rounded-lg border-2 border-amber-200 focus:border-amber-500 focus:outline-none" />
+                    </div>
+
+                    <!-- طريقة التوصيل -->
+                    <div class="mb-6">
+                        <label class="block text-amber-900 font-bold mb-2">
+                            طريقة التوصيل <span class="text-red-500">*</span>
+                        </label>
+
+                        <div id="deliveryType" class="flex items-center gap-6 mb-4">
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="radio" name="deliveryType" value="home" checked class="form-radio h-5 w-5 text-amber-600" />
+                                <span class="mr-2">🚚 توصيل إلى المنزل</span>
+                            </label>
+
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="radio" name="deliveryType" value="desk" class="form-radio h-5 w-5 text-amber-600" />
+                                <span class="mr-2">🏢 استلام من المكتب</span>
+                            </label>
+                        </div>
+
+                        <!-- Bloc des prix -->
+                        <div id="pricedisplay" class="bg-white rounded-lg p-4 border border-amber-100 shadow-sm">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-amber-800 font-semibold">سعر المنتج</span>
+                                <span id="productPrice" class="text-amber-900 font-bold">145,000 د.ج</span>
+                            </div>
+
+                            <div class="flex justify-between mb-2">
+                                <span class="text-amber-800">تكلفة التوصيل</span>
+                                <span id="deliveryPrice" class="text-amber-900 font-bold">-- د.ج</span>
+                            </div>
+
+                            <hr class="my-2 border-amber-100" />
+
+                            <div class="flex justify-between">
+                                <span class="text-amber-900 font-bold text-lg">الإجمالي</span>
+                                <span id="totalPrice" class="text-amber-900 font-extrabold text-lg">-- د.ج</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 flex items-center justify-center gap-3 bg-white border border-amber-100 rounded-lg p-3 shadow-sm">
+                        <img src="https://yalidine-express.com.dz/assets/img/yalidine-logo.png" alt="Yalidine Express" class="h-10 object-contain" />
+                        <span class="text-amber-900 font-semibold text-lg">
+                            يتم التوصيل عبر <span class="text-red-700 font-bold">Yalidine Express</span> 🚚
+                        </span>
+                    </div>
+
+                    <!-- الموافقة على الشروط -->
+                    <div class="mb-6">
+                        <label class="flex items-start cursor-pointer">
+                            <input type="checkbox" id="terms" name="terms" required class="mt-1 ml-3 w-5 h-5 text-amber-600 border-amber-300 rounded focus:ring-amber-500" />
+                            <span class="text-amber-900">
+                                أوافق على
+                                <a href="#" class="text-amber-700 underline font-bold">شروط الخدمة</a>
+                                و
+                                <a href="#" class="text-amber-700 underline font-bold">سياسة الاسترجاع</a>
+                                <span class="text-red-500">*</span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <!-- زر الإرسال -->
+                    <button type="submit" class="w-full text-white px-8 py-4 rounded-full font-bold text-xl shadow-xl mb-4 bg-gradient-to-r from-amber-600 to-amber-800 hover:from-amber-700 hover:to-amber-900 transition">
+                        تأكيد الطلب
+                    </button>
+
+                    <div class="text-center">
+                        <p class="text-amber-800 mb-2">
+                            للطلب عبر الهاتف:
+                            <strong class="text-amber-900" dir="ltr" style="display: inline-block;">
+                                +213 660 000 000
+                            </strong>
+                        </p>
+                        <p class="text-sm text-gray-600">
+                            خدمة العملاء متاحة من السبت إلى الخميس: 9 صباحاً - 6 مساءً
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-12 md:py-20 bg-amber-50" id="faq">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-amber-900 mb-12">
+                الأسئلة المتكررة
+            </h2>
+
+            <div class="max-w-3xl mx-auto space-y-4">
+                <!-- FAQ 1 -->
+                <div class="faq-item bg-white rounded-xl shadow-md overflow-hidden">
+                    <button class="faq-question w-full text-right p-6 flex justify-between items-center hover:bg-amber-50 transition" onclick="toggleFAQ(0)" aria-expanded="false" aria-controls="faq-answer-0">
+                        <span class="font-bold text-lg text-amber-900">كم يستغرق وقت التوصيل؟</span>
+                        <svg class="w-6 h-6 text-amber-700 transform transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="faq-answer-0" class="faq-answer px-6 pb-0">
+                        <p class="text-amber-800 pb-6">
+                            يتم التوصيل خلال 2-5 أيام عمل لمعظم الولايات. الجزائر العاصمة والمدن الكبرى: 1-2 أيام. المناطق النائية قد تستغرق حتى 7 أيام. سنتصل بك لتأكيد موعد التسليم الدقيق.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="faq-item bg-white rounded-xl shadow-md overflow-hidden">
+                    <button class="faq-question w-full text-right p-6 flex justify-between items-center hover:bg-amber-50 transition" onclick="toggleFAQ(1)" aria-expanded="false" aria-controls="faq-answer-1">
+                        <span class="font-bold text-lg text-amber-900">ما هي شروط الضمان؟</span>
+                        <svg class="w-6 h-6 text-amber-700 transform transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="faq-answer-1" class="faq-answer px-6 pb-0">
+                        <p class="text-amber-800 pb-6">
+                            نوفر ضمان شامل لمدة سنتين على جميع اللابتوبات. يغطي الضمان أي عيوب في التصنيع أو الأداء. لدينا مراكز صيانة معتمدة في أكثر من 20 ولاية. الضمان لا يشمل الأضرار الناتجة عن سوء الاستخدام أو الحوادث.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="faq-item bg-white rounded-xl shadow-md overflow-hidden">
+                    <button class="faq-question w-full text-right p-6 flex justify-between items-center hover:bg-amber-50 transition" onclick="toggleFAQ(2)" aria-expanded="false" aria-controls="faq-answer-2">
+                        <span class="font-bold text-lg text-amber-900">هل يمكنني إرجاع المنتج؟</span>
+                        <svg class="w-6 h-6 text-amber-700 transform transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="faq-answer-2" class="faq-answer px-6 pb-0">
+                        <p class="text-amber-800 pb-6">
+                            نعم، يمكنك إرجاع اللابتوب خلال 14 يوم من تاريخ الاستلام إذا لم تكن راضياً عنه. شرط أن يكون المنتج في حالته الأصلية مع جميع الملحقات والتغليف. سيتم استرداد المبلغ كاملاً خلال 5-7 أيام عمل. تكاليف الشحن للإرجاع يتحملها العميل.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="faq-item bg-white rounded-xl shadow-md overflow-hidden">
+                    <button class="faq-question w-full text-right p-6 flex justify-between items-center hover:bg-amber-50 transition" onclick="toggleFAQ(3)" aria-expanded="false" aria-controls="faq-answer-3">
+                        <span class="font-bold text-lg text-amber-900">ما هي طرق الدفع المتاحة؟</span>
+                        <svg class="w-6 h-6 text-amber-700 transform transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="faq-answer-3" class="faq-answer px-6 pb-0">
+                        <p class="text-amber-800 pb-6">
+                            نقبل الدفع عند الاستلام (الطريقة الأكثر شعبية)، التحويل البنكي عبر CCP أو بريدي موب، والدفع الإلكتروني عبر بطاقات CIB. للطلبات الكبيرة (أكثر من 3 قطع)، نقدم خيار الدفع بالتقسيط.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="faq-item bg-white rounded-xl shadow-md overflow-hidden">
+                    <button class="faq-question w-full text-right p-6 flex justify-between items-center hover:bg-amber-50 transition" onclick="toggleFAQ(4)" aria-expanded="false" aria-controls="faq-answer-4">
+                        <span class="font-bold text-lg text-amber-900">هل المنتجات أصلية ومضمونة؟</span>
+                        <svg class="w-6 h-6 text-amber-700 transform transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="faq-answer-4" class="faq-answer px-6 pb-0">
+                        <p class="text-amber-800 pb-6">
+                            100% من منتجاتنا أصلية ومستوردة من موزعين معتمدين. كل لابتوب يأتي مع ضمان دولي + ضمان محلي، الفواتير الرسمية، وأرقام Serial قابلة للتحقق. نحن وكلاء معتمدون لأشهر العلامات التجارية العالمية.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-b from-stone-800 to-stone-900 text-amber-100 py-10">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <!-- Column 1 -->
+                <div>
+                    <h3 class="text-2xl font-bold text-amber-400 mb-4">LaptopCITY</h3>
+                    <p class="text-amber-200 mb-4">
+                        وجهتك الأولى لشراء اللابتوبات عالية الجودة في الجزائر. نقدم أفضل المنتجات بأسعار تنافسية مع خدمة متميزة.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="https://www.facebook.com/belfortcity" target="_blank" rel="noopener noreferrer" aria-label="صفحة فيسبوك" class="inline-block p-2 rounded-full hover:bg-amber-100 transition">
+                            <svg class="w-8 h-8 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="صفحة فيسبوك" class="inline-block p-2 rounded-full hover:bg-amber-100 transition">
+                            <svg class="w-8 h-8 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                        <a href="https://wa.me/213660000000" target="_blank" class="fixed top-1/2 left-5 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg w-14 h-14 flex items-center justify-center transition-all duration-300 animate-bounce z-50">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-7 h-7">
+                                <path d="M20.52 3.48A11.85 11.85 0 0012 0C5.37 0 0 5.37 0 12a11.93 11.93 0 001.66 6.01L0 24l6.21-1.63A11.9 11.9 0 0012 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.2-3.48-8.52zM12 22a9.93 9.93 0 01-5.06-1.38l-.36-.21-3.68.97.98-3.58-.23-.37A9.93 9.93 0 012 12C2 6.49 6.49 2 12 2a9.94 9.94 0 019.98 10c0 5.51-4.47 10-9.98 10zm5.28-7.7c-.29-.14-1.71-.84-1.97-.94-.26-.1-.45-.14-.64.14-.19.29-.74.94-.91 1.13-.17.19-.34.22-.63.07-.29-.14-1.24-.46-2.37-1.47a8.74 8.74 0 01-1.61-1.99c-.17-.29-.02-.45.12-.6.12-.12.29-.31.43-.46.14-.14.19-.24.29-.41.1-.17.05-.31-.02-.46-.07-.14-.64-1.54-.88-2.1-.23-.56-.47-.48-.64-.49l-.54-.01c-.17 0-.45.07-.68.31-.23.24-.9.88-.9 2.14s.92 2.48 1.05 2.65c.14.17 1.81 2.77 4.38 3.89.61.26 1.09.41 1.46.52.61.19 1.17.16 1.61.1.49-.07 1.71-.7 1.95-1.37.24-.68.24-1.26.17-1.37-.07-.12-.26-.19-.55-.33z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 2 -->
+                <div>
+                    <h4 class="text-xl font-bold text-amber-400 mb-4">روابط مفيدة</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-amber-200 hover:text-amber-400 transition">عن LaptopCITY</a></li>
+                        <li><a href="#" class="text-amber-200 hover:text-amber-400 transition">سياسة الخصوصية</a></li>
+                        <li><a href="#" class="text-amber-200 hover:text-amber-400 transition">شروط الخدمة</a></li>
+                        <li><a href="#" class="text-amber-200 hover:text-amber-400 transition">سياسة الإرجاع والاستبدال</a></li>
+                        <li><a href="#faq" class="text-amber-200 hover:text-amber-400 transition">الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3 -->
+                <div>
+                    <h4 class="text-xl font-bold text-amber-400 mb-4">تواصل معنا</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 ml-2 text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <span class="text-amber-200">+213 660 000 000</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 ml-2 text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <span class="text-amber-200">contact@laptopcity.dz</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 ml-2 text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span class="text-amber-200">الجزائر العاصمة، الجزائر</span>
+                        </li>
+                    </ul>
+
+                    <div class="mt-6">
+                        <p class="text-amber-300 font-semibold mb-2">شعارات الثقة:</p>
+                        <div class="flex gap-4">
+                            <div class="bg-amber-100 text-amber-900 px-3 py-1 rounded text-xs font-bold">
+                                ضمان محلي
+                            </div>
+                            <div class="bg-amber-100 text-amber-900 px-3 py-1 rounded text-xs font-bold">
+                                شحن آمن
+                            </div>
+                            <div class="bg-amber-100 text-amber-900 px-3 py-1 rounded text-xs font-bold">
+                                منتجات أصلية
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-amber-700 pt-6 text-center">
+                <p class="text-amber-300">
+                    © 2025 LaptopCITY. جميع الحقوق محفوظة.
+                </p>
+                <p class="text-amber-400 text-sm mt-2">
+                    صُنع بكل ❤️ في الجزائر
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sticky CTA for Mobile -->
+    <div class="sticky-cta bg-gradient-to-r from-red-600 to-red-800 p-4 md:hidden">
+        <a href="#order-form" class="block text-center text-white font-bold text-lg" aria-label="اطلب الآن">
+            اطلب الآن - الدفع عند الاستلام 🚀
+        </a>
+    </div>
+
+    <!-- Success/Error Modal -->
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 p-8 text-center">
+            <div id="modal-content">
+                <!-- Content will be injected by JavaScript -->
+            </div>
+            <button onclick="closeModal()" class="btn-primary text-white px-8 py-3 rounded-full font-bold mt-6" aria-label="إغلاق">
+                حسناً
+            </button>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
