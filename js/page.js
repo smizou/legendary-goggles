@@ -313,9 +313,8 @@ document.addEventListener('DOMContentLoaded', () => {
     loadDeliveryData();
     updatePrices();
 });
-</script>
 
-<script>
+
 // ✅ New logic using extracted_data.json
 let deliveryData = [];
 
