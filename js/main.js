@@ -2,7 +2,7 @@
 
 const CONFIG = {
     formSelector: '[data-dynamic-form]',
-    apiEndpoint: '/.netlify/functions/submit-mail-table',
+    apiEndpoint: '/.netlify/functions/submit',
     recaptchaSiteKey: '6Lfgft8rAAAAAF7IiVk0-LjPvlGvu29VO8j8eE5r',
     deliveryDataFile: '../json/_data.json'
 };
