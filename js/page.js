@@ -1,4 +1,4 @@
-// page.js - UI/UX Features Only
+// page.js - UI/UX Features & Price Calculator
 
 // ============================================
 // GALLERY FUNCTIONALITY
@@ -117,38 +117,52 @@ document.querySelectorAll('section').forEach(section => {
 });
 
 // ============================================
-// PRICE DISPLAY (Read-only, no form logic)
+// PRICE CALCULATION
 // ============================================
-const productPriceBase = 145000;
+const UNIT_PRICE = 145000;
+let deliveryRates = { home: 0, desk: 0 };
 
-function updateDisplayPrices() {
-    const quantityInput = document.getElementById('quantity');
-    const productPriceSpan = document.getElementById('productPrice');
-    const deliveryPriceSpan = document.getElementById('deliveryPrice');
-    const totalPriceSpan = document.getElementById('totalPrice');
-    
-    if (!quantityInput || !productPriceSpan) return;
-
-    const quantity = Math.max(1, parseInt(quantityInput.value) || 1);
-    const productPrice = productPriceBase * quantity;
-    
-    productPriceSpan.textContent = productPrice.toLocaleString() + ' د.ج';
-    
-    // Delivery price will be updated by main.js
-    const deliveryPrice = parseInt(deliveryPriceSpan?.textContent.replace(/[^\d]/g, '')) || 0;
-    const total = productPrice + deliveryPrice;
-    
-    if (totalPriceSpan) {
-        totalPriceSpan.textContent = total.toLocaleString() + ' د.ج';
+// Listen to wilaya changes
+document.getElementById("wilaya").addEventListener("change", function () {
+    const selected = this.selectedOptions[0];
+    if (selected && selected.value) {
+        const rateString = selected.dataset.rate;
+        if (rateString) {
+            const rates = rateString.replace(/\s/g, "").split(",");
+            deliveryRates = {
+                home: parseInt(rates[0]) || 0,
+                desk: parseInt(rates[1]) || 0,
+            };
+        }
+    } else {
+        deliveryRates = { home: 0, desk: 0 };
     }
-}
+    updatePrices();
+});
+
+// Listen to delivery type changes
+document.querySelectorAll('input[name="deliveryType"]').forEach((radio) => {
+    radio.addEventListener("change", updatePrices);
+});
 
 // Listen to quantity changes
-const quantityInput = document.getElementById('quantity');
-if (quantityInput) {
-    quantityInput.addEventListener('input', updateDisplayPrices);
-    quantityInput.addEventListener('change', updateDisplayPrices);
+document.getElementById("quantity").addEventListener("change", updatePrices);
+document.getElementById("quantity").addEventListener("input", updatePrices);
+
+// Update all prices
+function updatePrices() {
+    const quantity = parseInt(document.getElementById("quantity").value) || 1;
+    const deliveryType = document.querySelector('input[name="deliveryType"]:checked').value;
+    const deliveryPrice = deliveryType === "desk" ? deliveryRates.desk : deliveryRates.home;
+    const productTotal = UNIT_PRICE * quantity;
+    const totalPrice = productTotal + deliveryPrice;
+
+    document.getElementById("productPrice").textContent = productTotal.toLocaleString() + " د.ج";
+    document.getElementById("deliveryPrice").textContent = deliveryPrice
+        ? deliveryPrice.toLocaleString() + " د.ج"
+        : "-- د.ج";
+    document.getElementById("totalPrice").textContent = totalPrice.toLocaleString() + " د.ج";
 }
 
-// Initialize price display on load
-document.addEventListener('DOMContentLoaded', updateDisplayPrices);
+// Initialize prices on load
+updatePrices();    
