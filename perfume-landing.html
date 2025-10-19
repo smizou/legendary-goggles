@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="أحذية جلدية فاخرة - جودة عالية، تصميم عصري، راحة استثنائية - توصيل سريع لجميع الولايات">
+    <title>أحذية جلدية فاخرة - الجزائر</title>
+
+    <link rel="canonical" href="https://yourdomain.com" />
+    <meta property="og:title" content="أحذية جلدية فاخرة - جودة استثنائية">
+    <meta property="og:description" content="أحذية رجالية ونسائية من الجلد الطبيعي - اطلب الآن والدفع عند الاستلام">
+    <meta property="og:image" content="https://yourdomain.com/og-image.jpg">
+    <meta property="og:url" content="https://yourdomain.com">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ar_DZ">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        * { font-family: 'Cairo', sans-serif; }
+
+        :root{
+            --bg-50: #fafaf9;
+            --bg-100: #f5f5f4;
+            --cream: #e7e5e4;
+            --leather-brown: #78350f;
+            --leather-brown-600: #92400e;
+            --leather-brown-700: #451a03;
+            --text-dark: #1c1917;
+            --muted: #57534e;
+            --accent-tan: #d6a57c;
+        }
+
+        body{
+            background-color: var(--bg-50);
+            color: var(--text-dark);
+        }
+
+        header{ 
+            background: linear-gradient(135deg, #292524 0%, #44403c 100%);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .btn-primary{
+            background: linear-gradient(135deg, var(--leather-brown), var(--leather-brown-600));
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary:hover{ 
+            transform: translateY(-2px); 
+            box-shadow: 0 12px 40px rgba(120, 53, 15, 0.25);
+        }
+
+        .gallery-container{ 
+            position: relative; 
+            overflow: hidden;
+            background: linear-gradient(to bottom, #fafaf9, #f5f5f4);
+        }
+        .gallery-slide{ 
+            display: none; 
+            animation: fadeIn 0.6s ease;
+        }
+        .gallery-slide.active{ display: block; }
+        @keyframes fadeIn{ 
+            from{opacity:0; transform: scale(0.95);} 
+            to{opacity:1; transform: scale(1);} 
+        }
+
+        .thumbnail{ 
+            cursor:pointer; 
+            opacity:0.6; 
+            transition: all .3s ease; 
+            border:3px solid transparent;
+            filter: grayscale(30%);
+        }
+        .thumbnail.active, .thumbnail:hover{ 
+            opacity:1; 
+            border-color: var(--leather-brown); 
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        .faq-item{ 
+            border-bottom: 1px solid var(--cream);
+            transition: all 0.3s ease;
+        }
+        .faq-item:hover {
+            background: rgba(120, 53, 15, 0.02);
+        }
+        .faq-answer{ 
+            max-height: 0; 
+            overflow: hidden; 
+            transition: max-height 0.4s ease;
+        }
+        .faq-answer.open{ max-height: 500px; }
+
+        .modal{ 
+            display:none; 
+            position:fixed; 
+            inset:0; 
+            background:rgba(28, 25, 23, 0.75); 
+            z-index:1000; 
+            align-items:center; 
+            justify-content:center;
+            backdrop-filter: blur(4px);
+        }
+        .modal.show{ display:flex; }
+
+        .price-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            box-shadow: 0 10px 40px rgba(120, 53, 15, 0.2), inset 0 1px 0 rgba(255,255,255,0.5);
+        }
+
+        .leather-texture {
+            position: relative;
+        }
+        
+        .leather-texture::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, transparent 0%, rgba(0,0,0,0.03) 100%),
+                radial-gradient(circle at 80% 80%, transparent 0%, rgba(0,0,0,0.02) 100%);
+            pointer-events: none;
+        }
+
+        @media (max-width:768px){
+            .sticky-cta{ 
+                position: fixed; 
+                bottom:0; 
+                left:0; 
+                right:0; 
+                z-index:50; 
+                box-shadow:0 -4px 20px rgba(0,0,0,0.2);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="shadow-xl sticky top-0 z-40">
+    <div class="container mx-auto px-4 py-5 flex flex-col md:flex-row justify-between items-center">
+        <div class="text-center md:text-right w-full md:w-auto mb-3 md:mb-0">
+            <h1 class="text-2xl md:text-3xl font-bold text-amber-50">👞 الأحذية الفاخرة</h1>
+            <p class="text-xs md:text-sm text-amber-200">جودة الجلد الطبيعي</p>
+        </div>
+        <a href="#order-form" class="hidden md:flex btn-primary text-white px-8 py-3 rounded-full font-bold text-base shadow-lg">
+            اطلب الآن
+        </a>
+    </div>
+</header>
+
+<section class="py-10 md:py-20 bg-gradient-to-b from-stone-50 to-stone-100">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-10">
+            <h2 class="text-4xl md:text-6xl font-bold mb-5 text-stone-900">
+                أحذية جلدية تجمع بين الأناقة والراحة
+            </h2>
+            <p class="text-lg md:text-2xl text-stone-600 max-w-3xl mx-auto">
+                مصنوعة من الجلد الطبيعي 100% - تصميم عصري يناسب جميع المناسبات - جودة تدوم لسنوات
+            </p>
+        </div>
+
+        <div class="flex justify-center mb-10">
+            <div class="price-box relative rounded-2xl p-8 border-4 border-amber-600 text-center leather-texture">
+                <span class="inline-block bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-2 rounded-full text-sm font-bold mb-4 shadow-lg animate-pulse">
+                    ⚡ عرض حصري - الكمية محدودة
+                </span>
+                <p class="text-6xl md:text-7xl font-black text-stone-900 mb-2">8,500 د.ج</p>
+                <p class="text-base text-stone-700 font-semibold">شامل التوصيل لجميع الولايات</p>
+                <div class="mt-4 flex items-center justify-center gap-2 text-stone-600">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span class="text-sm">ضمان استرجاع المال خلال 14 يوم</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="max-w-6xl mx-auto">
+            <div class="gallery-container bg-white rounded-2xl shadow-2xl overflow-hidden p-4 leather-texture">
+                <div class="gallery-slide active" data-slide="0">
+                    <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=1400&q=85&auto=format&fit=crop" alt="حذاء جلدي فاخر" class="w-full h-[450px] mx-auto object-cover rounded-xl">
+                </div>
+                <div class="gallery-slide" data-slide="1">
+                    <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=1400&q=85&auto=format&fit=crop" alt="حذاء جلدي بني" class="w-full h-[450px] mx-auto object-cover rounded-xl">
+                </div>
+                <div class="gallery-slide" data-slide="2">
+                    <img src="https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=1400&q=85&auto=format&fit=crop" alt="حذاء رياضي جلدي" class="w-full h-[450px] mx-auto object-cover rounded-xl">
+                </div>
+                <div class="gallery-slide" data-slide="3">
+                    <img src="https://images.unsplash.com/photo-1603808033192-082d6919d3e1?w=1400&q=85&auto=format&fit=crop" alt="حذاء كاجوال" class="w-full h-[450px] mx-auto object-cover rounded-xl">
+                </div>
+                <div class="gallery-slide" data-slide="4">
+                    <img src="https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=1400&q=85&auto=format&fit=crop" alt="حذاء رسمي" class="w-full h-[450px] mx-auto object-cover rounded-xl">
+                </div>
+                <div class="gallery-slide" data-slide="5">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1400&q=85&auto=format&fit=crop" alt="حذاء عصري" class="w-full h-[450px] mx-auto object-cover rounded-xl">
+                </div>
+                <button class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/95 hover:bg-white text-stone-900 rounded-full p-4 shadow-2xl transition hover:scale-110" onclick="changeSlide(-1)" aria-label="الصورة السابقة">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+                <button class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/95 hover:bg-white text-stone-900 rounded-full p-4 shadow-2xl transition hover:scale-110" onclick="changeSlide(1)" aria-label="الصورة التالية">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+            </div>
+            <div class="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-4 mt-6">
+                <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=300&q=70&auto=format&fit=crop" class="thumbnail active rounded-xl cursor-pointer h-20 md:h-28 w-full object-cover shadow-md" onclick="goToSlide(0)" alt="معاينة 1">
+                <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=300&q=70&auto=format&fit=crop" class="thumbnail rounded-xl cursor-pointer h-20 md:h-28 w-full object-cover shadow-md" onclick="goToSlide(1)" alt="معاينة 2">
+                <img src="https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=300&q=70&auto=format&fit=crop" class="thumbnail rounded-xl cursor-pointer h-20 md:h-28 w-full object-cover shadow-md" onclick="goToSlide(2)" alt="معاينة 3">
+                <img src="https://images.unsplash.com/photo-1603808033192-082d6919d3e1?w=300&q=70&auto=format&fit=crop" class="thumbnail rounded-xl cursor-pointer h-20 md:h-28 w-full object-cover shadow-md" onclick="goToSlide(3)" alt="معاينة 4">
+                <img src="https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=300&q=70&auto=format&fit=crop" class="thumbnail rounded-xl cursor-pointer h-20 md:h-28 w-full object-cover shadow-md" onclick="goToSlide(4)" alt="معاينة 5">
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&q=70&auto=format&fit=crop" class="thumbnail rounded-xl cursor-pointer h-20 md:h-28 w-full object-cover shadow-md" onclick="goToSlide(5)" alt="معاينة 6">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-12 md:py-20 bg-gradient-to-b from-stone-100 to-stone-200" id="desciption">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl p-10 md:p-14 leather-texture">
+            <div class="text-center mb-10">
+                <h3 class="font-black text-3xl md:text-4xl mb-4 text-stone-900">لماذا أحذيتنا مميزة؟</h3>
+                <p class="text-stone-600 text-lg">استثمر في راحتك وأناقتك</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-gradient-to-br from-amber-50 to-amber-100 rounded-2xl p-6 border-r-4 border-amber-600 shadow-lg">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-amber-600 rounded-full p-3 flex-shrink-0">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xl mb-2 text-stone-900">جلد طبيعي 100%</h4>
+                            <p class="text-stone-700">مصنوع من أجود أنواع الجلد الطبيعي المستورد، مرن ويتنفس بشكل طبيعي</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-amber-50 to-amber-100 rounded-2xl p-6 border-r-4 border-amber-600 shadow-lg">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-amber-600 rounded-full p-3 flex-shrink-0">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xl mb-2 text-stone-900">راحة استثنائية</h4>
+                            <p class="text-stone-700">نعل داخلي مبطن يوفر الراحة طوال اليوم، مناسب للمشي الطويل</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-amber-50 to-amber-100 rounded-2xl p-6 border-r-4 border-amber-600 shadow-lg">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-amber-600 rounded-full p-3 flex-shrink-0">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xl mb-2 text-stone-900">تصميم عصري</h4>
+                            <p class="text-stone-700">يجمع بين الأناقة الكلاسيكية واللمسات العصرية، مناسب لكل المناسبات</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-amber-50 to-amber-100 rounded-2xl p-6 border-r-4 border-amber-600 shadow-lg">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-amber-600 rounded-full p-3 flex-shrink-0">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xl mb-2 text-stone-900">متانة عالية</h4>
+                            <p class="text-stone-700">مقاوم للتآكل والخدوش، يحافظ على شكله وجودته لسنوات</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-10 bg-stone-50">
+    <div class="container mx-auto px-4">
+        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="text-center p-6 rounded-2xl shadow-xl bg-white border-b-4 border-amber-600 transition-all hover:shadow-2xl hover:-translate-y-1">
+                <div class="bg-gradient-to-br from-amber-100 to-amber-200 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-9 h-9 text-amber-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944c-3.197 0-6.196 1.056-8.24 2.976m14.48 0c.376.54.67 1.144.887 1.815l-1.921-.497a8.001 8.001 0 00-14.807 0l-1.921.497c.217-.671.511-1.275.887-1.815m14.48 0A10.027 10.027 0 0012 20.056c-3.264 0-6.26-1.056-8.48-2.976M12 21a9 9 0 006.18-15.82C16.92 5.06 14.54 4 12 4s-4.92 1.06-6.18 5.18A9 9 0 0012 21z" />
+                    </svg>
+                </div>
+                <p class="text-xl font-bold text-stone-900 mb-2">جودة مضمونة</p>
+                <p class="text-sm text-stone-600">نختار كل قطعة بعناية لنضمن لك الأفضل</p>
+            </div>
+            <div class="text-center p-6 rounded-2xl shadow-xl bg-white border-b-4 border-amber-600 transition-all hover:shadow-2xl hover:-translate-y-1">
+                <div class="bg-gradient-to-br from-amber-100 to-amber-200 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-9 h-9 text-amber-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                </div>
+                <p class="text-xl font-bold text-stone-900 mb-2">توصيل سريع</p>
+                <p class="text-sm text-stone-600">يصلك طلبك في أقل من 48 ساعة</p>
+            </div>
+            <div class="text-center p-6 rounded-2xl shadow-xl bg-white border-b-4 border-amber-600 transition-all hover:shadow-2xl hover:-translate-y-1">
+                <div class="bg-gradient-to-br from-amber-100 to-amber-200 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-9 h-9 text-amber-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                    </svg>
+                </div>
+                <p class="text-xl font-bold text-stone-900 mb-2">دفع عند الاستلام</p>
+                <p class="text-sm text-stone-600">لا تدفع إلا بعد استلام المنتج وفحصه</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-16 md:py-24 bg-gradient-to-b from-white to-stone-100 scroll-mt-24" id="order-form">
+    <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-black mb-5 text-stone-900">
+                    احصل على حذائك الآن
+                </h2>
+                <p class="text-xl text-stone-600">
+                    املأ البيانات وسيتصل بك فريقنا خلال ساعات للتأكيد
+                </p>
+            </div>
+
+            <form id="orderForm" data-dynamic-form class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 leather-texture border-t-4 border-amber-600">
+                <div class="mb-7">
+                    <label for="fullName" class="block font-bold mb-3 text-lg text-stone-900">
+                        الاسم الكامل <span class="text-red-600">*</span>
+                    </label>
+                    <input type="text" id="fullName" name="fullName" required class="w-full px-5 py-4 rounded-xl border-2 border-stone-300 focus:border-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-200 transition" placeholder="مثال: أحمد بن محمد" />
+                </div>
+
+                <div class="mb-7">
+                    <label for="phone" class="block font-bold mb-3 text-lg text-stone-900">
+                        رقم الهاتف <span class="text-red-600">*</span>
+                    </label>
+                    <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" dir="ltr" class="w-full px-5 py-4 rounded-xl border-2 border-stone-300 focus:border-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-200 transition text-right" placeholder="مثال : 0660112233" />
+                </div>
+
+                <div class="mb-7">
+                    <label for="wilaya" class="block font-bold mb-3 text-lg text-stone-900">
+                        الولاية <span class="text-red-600">*</span>
+                    </label>
+                    <select id="wilaya" name="wilaya" required class="w-full px-5 py-4 rounded-xl border-2 border-stone-300 focus:border-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-200 transition">
+                        <option value="">اختر الولاية</option>
+                    </select>
+                    <div class="text-red-600 text-sm mt-2 hidden" id="wilayaError">
+                        الرجاء اختيار الولاية
+                    </div>
+                </div>
+
+                <div class="mb-7">
+                    <label for="commune" class="block font-bold mb-3 text-lg text-stone-900">
+                        البلدية <span class="text-red-600">*</span>
+                    </label>
+                    <select id="commune" name="commune" disabled required class="w-full px-5 py-4 rounded-xl border-2 border-stone-300 focus:border-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-200 transition">
+                        <option value="">اختر البلدية</option>
+                    </select>
+                    <div class="text-red-600 text-sm mt-2 hidden" id="communeError">
+                        الرجاء اختيار البلدية
+                    </div>
+                </div>
+
+                <div class="mb-7">
+                    <label for="size" class="block font-bold mb-3 text-lg text-stone-900">
+                        المقاس <span class="text-red-600">*</span>
+                    </label>
+                    <select id="size" name="size" required class="w-full px-5 py-4 rounded-xl border-2 border-stone-300 focus:border-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-200 transition">
+                        <option value="">اختر المقاس</option>
+                        <option value="36">36</option>
+                        <option value="37">37</option>
+                        <option value="38">38</option>
+                        <option value="39">39</option>
+                        <option value="40">40</option>
+                        <option value="41">41</option>
+                        <option value="42">42</option>
+                        <option value="43">43</option>
+                        <option value="44">44</option>
+                        <option value="45">45</option>
+                        <option value="46">46</option>
+                    </select>
+                </div>
+
+                <div class="mb-7">
+                    <label for="color" class="block font-bold mb-4 text-lg text-stone-900">
+                        اللون <span class="text-red-600">*</span>
+                    </label>
+                    <div id="color" class="flex flex-wrap gap-4">
+                        <label class="cursor-pointer group">
+                            <input type="radio" name="color" value="أسود" class="hidden peer" required>
+                            <div class="flex flex-col items-center gap-2">
+                                <div class="w-14 h-14 rounded-full border-4 border-transparent peer-checked:border-amber-600 peer-checked:shadow-lg bg-black transition-all group-hover:scale-110"></div>
+                                <span class="text-sm font-semibold text-stone-700 peer-checked:text-amber-600">أسود</span>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer group">
+                            <input type="radio" name="color" value="أبيض" class="hidden peer" required>
+                            <div class="flex flex-col items-center gap-2">
+                                <div class="w-14 h-14 rounded-full border-2 border-stone-400 bg-white peer-checked:border-4 peer-checked:border-amber-600 peer-checked:shadow-lg transition-all group-hover:scale-110"></div>
+                                <span class="text-sm font-semibold text-stone-700 peer-checked:text-amber-600">أبيض</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mb-7">
+                    <label for="quantity" class="block font-bold mb-3 text-lg text-stone-900">
+                        الكمية <span class="text-red-600">*</span>
+                    </label>
+                    <input type="number" id="quantity" name="quantity" required min="1" max="10" value="1" class="w-full px-5 py-4 rounded-xl border-2 border-stone-300 focus:border-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-200 transition" />
+                </div>
+
+                <div class="mb-7">
+                    <label class="block font-bold mb-4 text-lg text-stone-900">
+                        طريقة التوصيل <span class="text-red-600">*</span>
+                    </label>
+                    <div id="deliveryType" class="flex flex-col md:flex-row md:items-center gap-4 md:gap-6 mb-5">
+                        <label class="inline-flex items-center cursor-pointer bg-stone-50 px-6 py-4 rounded-xl border-2 border-stone-200 hover:border-amber-600 transition has-[:checked]:border-amber-600 has-[:checked]:bg-amber-50">
+                            <input type="radio" name="deliveryType" value="home" checked class="form-radio h-5 w-5 text-amber-600" />
+                            <span class="mr-3 font-semibold text-stone-900">🚚 توصيل إلى المنزل</span>
+                        </label>
+                        <label class="inline-flex items-center cursor-pointer bg-stone-50 px-6 py-4 rounded-xl border-2 border-stone-200 hover:border-amber-600 transition has-[:checked]:border-amber-600 has-[:checked]:bg-amber-50">
+                            <input type="radio" name="deliveryType" value="desk" class="form-radio h-5 w-5 text-amber-600" />
+                            <span class="mr-3 font-semibold text-stone-900">🏢 استلام من المكتب</span>
+                        </label>
+                    </div>
+
+                    <div id="pricedisplay" class="bg-gradient-to-br from-amber-50 to-amber-100 rounded-2xl p-6 border-2 border-amber-200 shadow-lg">
+                        <div class="flex justify-between mb-3 pb-3 border-b border-amber-200">
+                            <span class="font-bold text-stone-900">سعر المنتج</span>
+                            <span id="productPrice" class="font-black text-amber-900 text-lg">8,500 د.ج</span>
+                        </div>
+                        <div class="flex justify-between mb-3">
+                            <span class="text-stone-700 font-semibold">تكلفة التوصيل</span>
+                            <span id="deliveryPrice" class="font-bold text-stone-900">-- د.ج</span>
+                        </div>
+                        <hr class="my-3 border-amber-300" />
+                        <div class="flex justify-between items-center">
+                            <span class="font-black text-xl text-stone-900">الإجمالي</span>
+                            <span id="totalPrice" class="font-black text-2xl text-amber-900">-- د.ج</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-7 flex flex-col md:flex-row items-center justify-center gap-4 bg-gradient-to-r from-red-50 to-orange-50 border-2 border-red-200 rounded-2xl p-5 shadow-md">
+                    <img src="https://yalidine-express.com.dz/assets/img/yalidine-logo.png" alt="Yalidine Express" class="h-12 object-contain" />
+                    <span class="font-bold text-lg text-stone-900 text-center">
+                        يتم التوصيل عبر <span class="text-red-700 font-black">Yalidine Express</span> 🚚
+                    </span>
+                </div>
+
+                <div class="mb-8 mt-7">
+                    <label class="flex items-start cursor-pointer group">
+                        <input type="checkbox" id="terms" name="terms" required class="mt-1 ml-3 w-6 h-6 border-2 rounded-lg focus:ring-amber-600 text-amber-600" />
+                        <span class="text-stone-900 leading-relaxed">
+                            أوافق على
+                            <a href="#" class="underline font-bold text-amber-700 hover:text-amber-900">شروط الخدمة</a>
+                            و
+                            <a href="#" class="underline font-bold text-amber-700 hover:text-amber-900">سياسة الاسترجاع</a>
+                            <span class="text-red-600">*</span>
+                        </span>
+                    </label>
+                </div>
+
+                <button type="submit" class="w-full text-white px-10 py-5 rounded-2xl font-black text-2xl shadow-2xl mb-5 btn-primary">
+                    ✅ تأكيد الطلب الآن
+                </button>
+
+                <div class="text-center bg-stone-50 rounded-xl p-5">
+                    <p class="mb-3 text-stone-700 text-lg">
+                        للطلب عبر الهاتف:
+                        <strong dir="ltr" class="block md:inline-block text-2xl text-amber-900 font-black mt-2 md:mt-0">
+                            +213 660 000 000
+                        </strong>
+                    </p>
+                    <p class="text-sm text-stone-600">
+                        📞 خدمة العملاء متاحة من السبت إلى الخميس: 9 صباحاً - 6 مساءً
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section class="py-16 md:py-24 bg-stone-50" id="faq">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl md:text-5xl font-black text-center mb-14 text-stone-900">
+            الأسئلة الشائعة
+        </h2>
+
+        <div class="max-w-4xl mx-auto space-y-5">
+            <div class="faq-item bg-white rounded-2xl shadow-lg overflow-hidden border-r-4 border-amber-600">
+                <button class="faq-question w-full text-right p-7 flex justify-between items-center hover:bg-stone-50 transition" onclick="toggleFAQ(0)" aria-expanded="false" aria-controls="faq-answer-0">
+                    <span class="font-bold text-xl text-stone-900">ما هي مدة التوصيل؟</span>
+                    <svg class="w-7 h-7 transform transition-transform faq-icon text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div id="faq-answer-0" class="faq-answer px-7 pb-0">
+                    <p class="pb-7 text-stone-700 text-lg leading-relaxed">
+                        التوصيل يستغرق من 2 إلى 4 أيام عمل لمعظم الولايات. الجزائر العاصمة والمدن الكبرى: 1-2 أيام فقط. المناطق البعيدة قد تحتاج حتى 5 أيام. سيتصل بك فريقنا لتأكيد موعد التسليم الدقيق.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item bg-white rounded-2xl shadow-lg overflow-hidden border-r-4 border-amber-600">
+                <button class="faq-question w-full text-right p-7 flex justify-between items-center hover:bg-stone-50 transition" onclick="toggleFAQ(1)" aria-expanded="false" aria-controls="faq-answer-1">
+                    <span class="font-bold text-xl text-stone-900">هل الأحذية مضمونة؟</span>
+                    <svg class="w-7 h-7 transform transition-transform faq-icon text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div id="faq-answer-1" class="faq-answer px-7 pb-0">
+                    <p class="pb-7 text-stone-700 text-lg leading-relaxed">
+                        نعم، جميع منتجاتنا مضمونة ضد عيوب الصناعة. نوفر ضمان محدود على الجودة والخامات. الضمان لا يشمل التلف الناتج عن سوء الاستخدام. لأي استفسار، تواصل معنا عبر خدمة العملاء.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item bg-white rounded-2xl shadow-lg overflow-hidden border-r-4 border-amber-600">
+                <button class="faq-question w-full text-right p-7 flex justify-between items-center hover:bg-stone-50 transition" onclick="toggleFAQ(2)" aria-expanded="false" aria-controls="faq-answer-2">
+                    <span class="font-bold text-xl text-stone-900">هل يمكن إرجاع أو استبدال المنتج؟</span>
+                    <svg class="w-7 h-7 transform transition-transform faq-icon text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div id="faq-answer-2" class="faq-answer px-7 pb-0">
+                    <p class="pb-7 text-stone-700 text-lg leading-relaxed">
+                        نعم، يمكنك إرجاع أو استبدال المنتج خلال 14 يوم من تاريخ الاستلام إذا لم يكن مناسباً أو كان به عيب، بشرط أن يكون في حالته الأصلية مع التغليف. راجع سياسة الاسترجاع للتفاصيل.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item bg-white rounded-2xl shadow-lg overflow-hidden border-r-4 border-amber-600">
+                <button class="faq-question w-full text-right p-7 flex justify-between items-center hover:bg-stone-50 transition" onclick="toggleFAQ(3)" aria-expanded="false" aria-controls="faq-answer-3">
+                    <span class="font-bold text-xl text-stone-900">ما هي طرق الدفع المتاحة؟</span>
+                    <svg class="w-7 h-7 transform transition-transform faq-icon text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div id="faq-answer-3" class="faq-answer px-7 pb-0">
+                    <p class="pb-7 text-stone-700 text-lg leading-relaxed">
+                        نقبل الدفع عند الاستلام (الخيار الأكثر شيوعاً)، التحويل البنكي، والدفع الإلكتروني عبر بطاقات CIB. يمكنك اختيار الطريقة الأنسب لك عند التأكيد.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item bg-white rounded-2xl shadow-lg overflow-hidden border-r-4 border-amber-600">
+                <button class="faq-question w-full text-right p-7 flex justify-between items-center hover:bg-stone-50 transition" onclick="toggleFAQ(4)" aria-expanded="false" aria-controls="faq-answer-4">
+                    <span class="font-bold text-xl text-stone-900">هل الجلد المستخدم أصلي وطبيعي؟</span>
+                    <svg class="w-7 h-7 transform transition-transform faq-icon text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div id="faq-answer-4" class="faq-answer px-7 pb-0">
+                    <p class="pb-7 text-stone-700 text-lg leading-relaxed">
+                        نعم بالتأكيد! جميع أحذيتنا مصنوعة من الجلد الطبيعي 100%، مستورد من موردين موثوقين. الجودة مضمونة وتأتي مع شهادة أصالة.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="bg-gradient-to-b from-stone-800 to-stone-900 text-stone-100 py-12">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+            <div>
+                <h3 class="text-3xl font-black text-amber-400 mb-5">👞 الأحذية الفاخرة</h3>
+                <p class="text-stone-300 mb-5 leading-relaxed text-lg">
+                    وجهتك الأولى لشراء الأحذية الجلدية الفاخرة في الجزائر. نقدم جودة استثنائية بأسعار منافسة وخدمة موثوقة.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" target="_blank" rel="noopener noreferrer" aria-label="صفحة فيسبوك" class="inline-block p-3 rounded-full bg-stone-700 hover:bg-amber-600 transition-all hover:scale-110">
+                        <svg class="w-7 h-7 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+                    </a>
+                    <a href="#" target="_blank" rel="noopener noreferrer" aria-label="صفحة إنستغرام" class="inline-block p-3 rounded-full bg-stone-700 hover:bg-amber-600 transition-all hover:scale-110">
+                        <svg class="w-7 h-7 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                    <a href="https://wa.me/213660000000" target="_blank" class="fixed top-1/2 left-5 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-2xl w-16 h-16 flex items-center justify-center transition-all duration-300 hover:scale-110 z-50 animate-bounce">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-9 h-9"><path d="M20.52 3.48A11.85 11.85 0 0012 0C5.37 0 0 5.37 0 12a11.93 11.93 0 001.66 6.01L0 24l6.21-1.63A11.9 11.9 0 0012 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.2-3.48-8.52zM12 22a9.93 9.93 0 01-5.06-1.38l-.36-.21-3.68.97.98-3.58-.23-.37A9.93 9.93 0 012 12C2 6.49 6.49 2 12 2a9.94 9.94 0 019.98 10c0 5.51-4.47 10-9.98 10zm5.28-7.7c-.29-.14-1.71-.84-1.97-.94-.26-.1-.45-.14-.64.14-.19.29-.74.94-.91 1.13-.17.19-.34.22-.63.07-.29-.14-1.24-.46-2.37-1.47a8.74 8.74 0 01-1.61-1.99c-.17-.29-.02-.45.12-.6.12-.12.29-.31.43-.46.14-.14.19-.24.29-.41.10-.17.05-.31-.02-.46-.07-.14-.64-1.54-.88-2.10-.23-.56-.47-.48-.64-.49l-.54-.01c-.17 0-.45.07-.68.31-.23.24-.90.88-.90 2.14s.92 2.48 1.05 2.65c.14.17 1.81 2.77 4.38 3.89.61.26 1.09.41 1.46.52.61.19 1.17.16 1.61.10.49-.07 1.71-.70 1.95-1.37.24-.68.24-1.26.17-1.37-.07-.12-.26-.19-.55-.33z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-xl font-bold text-amber-400 mb-4">روابط مفيدة</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-stone-300 hover:text-amber-400 transition">من نحن</a></li>
+                    <li><a href="#" class="text-stone-300 hover:text-amber-400 transition">سياسة الخصوصية</a></li>
+                    <li><a href="#" class="text-stone-300 hover:text-amber-400 transition">شروط الخدمة</a></li>
+                    <li><a href="#" class="text-stone-300 hover:text-amber-400 transition">سياسة الإرجاع والاستبدال</a></li>
+                    <li><a href="#faq" class="text-stone-300 hover:text-amber-400 transition">الأسئلة الشائعة</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-xl font-bold text-amber-400 mb-4">تواصل معنا</h4>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <svg class="w-6 h-6 ml-2 text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                        <span class="text-stone-300">+213 660 000 000</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-6 h-6 ml-2 text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <span class="text-stone-300">contact@shoes-luxury.dz</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-6 h-6 ml-2 text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <span class="text-stone-300">الجزائر العاصمة، الجزائر</span>
+                    </li>
+                </ul>
+
+                <div class="mt-6">
+                    <p class="text-amber-300 font-semibold mb-2">شعارات الثقة:</p>
+                    <div class="flex gap-4 flex-wrap">
+                        <div class="bg-amber-100 text-amber-900 px-3 py-1 rounded text-xs font-bold">
+                            ضمان الجودة
+                        </div>
+                        <div class="bg-amber-100 text-amber-900 px-3 py-1 rounded text-xs font-bold">
+                            شحن آمن
+                        </div>
+                        <div class="bg-amber-100 text-amber-900 px-3 py-1 rounded text-xs font-bold">
+                            جلد طبيعي
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="border-t border-stone-700 pt-6 text-center">
+            <p class="text-stone-300">
+                © 2025 الأحذية الفاخرة. جميع الحقوق محفوظة.
+            </p>
+            <p class="text-amber-400 text-sm mt-2">
+                صُنع بكل ❤️ في الجزائر
+            </p>
+        </div>
+    </div>
+</footer>
+
+<div class="sticky-cta bg-gradient-to-r from-amber-700 to-amber-900 p-4 md:hidden">
+    <a href="#order-form" class="block text-center text-white font-bold text-lg" aria-label="اطلب الآن">
+        اطلب الآن - الدفع عند الاستلام 🚀
+    </a>
+</div>
+
+<div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 p-8 text-center">
+        <div id="modal-content">
+        </div>
+        <button onclick="closeModal()" class="btn-primary text-white px-8 py-3 rounded-full font-bold mt-6" aria-label="إغلاق">
+            حسناً
+        </button>
+    </div>
+</div>
+
+<script src="/js/page.js"></script>
+<script src="/js/main.js"></script>
+    
+</body>
+</html>
