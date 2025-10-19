@@ -198,9 +198,8 @@
                 </div>
             </div>
         </div>
-        
-        <div class="max-w-6xl mx-auto">
-            <div class="gallery-container bg-white rounded-2xl shadow-2xl overflow-hidden p-4 leather-texture">
+        <div class="max-w-6xl mx-auto px-4 md:px-0">
+    <div class="gallery-container bg-white rounded-2xl shadow-2xl overflow-hidden md:p-4 leather-texture -mx-4 md:mx-0">
                 <div class="gallery-slide active" data-slide="0">
                     <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=1400&q=85&auto=format&fit=crop" alt="حذاء جلدي فاخر" class="w-full h-[450px] mx-auto object-cover rounded-xl">
                 </div>
@@ -228,17 +227,19 @@
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                     </svg>
-                </button>
-            </div>
-            <div class="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-4 mt-6">
+                </button>        <!-- Your existing gallery slides here -->
+    </div>
+    <div class="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-4 mt-6">
                 <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=300&q=70&auto=format&fit=crop" class="thumbnail active rounded-xl cursor-pointer h-20 md:h-28 w-full object-cover shadow-md" onclick="goToSlide(0)" alt="معاينة 1">
                 <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=300&q=70&auto=format&fit=crop" class="thumbnail rounded-xl cursor-pointer h-20 md:h-28 w-full object-cover shadow-md" onclick="goToSlide(1)" alt="معاينة 2">
                 <img src="https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=300&q=70&auto=format&fit=crop" class="thumbnail rounded-xl cursor-pointer h-20 md:h-28 w-full object-cover shadow-md" onclick="goToSlide(2)" alt="معاينة 3">
                 <img src="https://images.unsplash.com/photo-1603808033192-082d6919d3e1?w=300&q=70&auto=format&fit=crop" class="thumbnail rounded-xl cursor-pointer h-20 md:h-28 w-full object-cover shadow-md" onclick="goToSlide(3)" alt="معاينة 4">
                 <img src="https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=300&q=70&auto=format&fit=crop" class="thumbnail rounded-xl cursor-pointer h-20 md:h-28 w-full object-cover shadow-md" onclick="goToSlide(4)" alt="معاينة 5">
                 <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&q=70&auto=format&fit=crop" class="thumbnail rounded-xl cursor-pointer h-20 md:h-28 w-full object-cover shadow-md" onclick="goToSlide(5)" alt="معاينة 6">
-            </div>
+                  <!-- Your existing thumbnails here -->
+    </div>
         </div>
+    
     </div>
 </section>
 
@@ -699,3 +700,4 @@
 </body>
 
 </html>
+
