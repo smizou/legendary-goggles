@@ -6,14 +6,6 @@
     <meta name="description" content="أحذية جلدية فاخرة - جودة عالية، تصميم عصري، راحة استثنائية - توصيل سريع لجميع الولايات">
     <title>أحذية جلدية فاخرة - الجزائر</title>
 
-    <link rel="canonical" href="https://landteam.netlify.app/shoes/" />
-    <meta property="og:title" content="أحذية جلدية فاخرة - جودة استثنائية">
-    <meta property="og:description" content="أحذية رجالية ونسائية من الجلد الطبيعي - اطلب الآن والدفع عند الاستلام">
-    <meta property="og:image" content="https://landteam.netlify.app/images/ogimage.png">
-    <meta property="og:url" content="https://landteam.netlify.app/shoes/">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="ar_DZ">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
@@ -71,82 +63,66 @@
             box-shadow: 0 12px 40px rgba(120, 53, 15, 0.25);
         }
 
+        /* GALLERY - DESKTOP */
         .gallery-container{ 
             position: relative; 
             overflow: hidden;
             background: linear-gradient(to bottom, #fafaf9, #f5f5f4);
+            border-radius: 1rem;
+            padding: 1rem;
         }
         
         .gallery-slide{ 
             display: none; 
-            animation: fadeIn 0.6s ease;
         }
-        .gallery-slide.active{ display: block; }
+        
+        .gallery-slide.active{ 
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
         
         @keyframes fadeIn{ 
-            from{opacity:0; transform: scale(0.95);} 
-            to{opacity:1; transform: scale(1);} 
+            from { opacity: 0; } 
+            to { opacity: 1; } 
         }
 
-        /* Mobile: Edge to edge, no padding/radius */
-        @media (max-width: 768px) {
-            .gallery-container {
-                border-radius: 0 !important;
-                padding: 0 !important;
-                margin-left: -1rem !important;
-                margin-right: -1rem !important;
-            }
-            
-            .gallery-slide img {
-                border-radius: 0 !important;
-                height: 70vh !important;
-                max-height: 600px;
-            }
-            
-            /* Hide arrows on mobile - use swipe instead */
-            .gallery-nav-btn {
-                display: none !important;
-            }
-            
-            /* Dot indicators for mobile */
-            .gallery-dots {
-                display: flex !important;
-            }
+        .gallery-slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 0.75rem;
         }
 
-        /* Desktop keeps original style */
-        @media (min-width: 769px) {
-            .gallery-dots {
-                display: none;
-            }
-        }
-
-        /* Dot indicators */
-        .gallery-dots {
+        /* Navigation arrows - desktop only */
+        .gallery-nav-btn {
             position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: none;
-            gap: 8px;
-            z-index: 10;
-        }
-
-        .gallery-dot {
-            width: 8px;
-            height: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            color: #1c1917;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
+            padding: 1rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
             transition: all 0.3s ease;
+            z-index: 10;
+            cursor: pointer;
+            border: none;
         }
 
-        .gallery-dot.active {
-            width: 24px;
-            border-radius: 4px;
+        .gallery-nav-btn:hover {
             background: white;
+            transform: translateY(-50%) scale(1.1);
         }
 
-        /* Thumbnail container - scrollable on mobile */
+        .gallery-nav-btn.prev { right: 1rem; }
+        .gallery-nav-btn.next { left: 1rem; }
+
+        /* Dot indicators - hidden on desktop */
+        .gallery-dots {
+            display: none;
+        }
+
+        /* Thumbnails - desktop grid */
         .thumbnail-container {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
@@ -154,43 +130,116 @@
             margin-top: 1.5rem;
         }
 
+        .thumbnail {
+            cursor: pointer;
+            opacity: 0.5;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            height: 110px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .thumbnail:hover {
+            opacity: 0.8;
+            transform: translateY(-2px);
+        }
+
+        .thumbnail.active {
+            opacity: 1;
+            border-color: var(--leather-brown);
+            box-shadow: 0 4px 12px rgba(120, 53, 15, 0.3);
+        }
+
+        /* MOBILE STYLES */
         @media (max-width: 768px) {
+            /* Full-width edge-to-edge gallery */
+            .gallery-wrapper {
+                margin-left: -1rem;
+                margin-right: -1rem;
+            }
+
+            .gallery-container {
+                border-radius: 0;
+                padding: 0;
+                background: #000;
+            }
+
+            .gallery-slide img {
+                border-radius: 0;
+                height: 85vh;
+                max-height: 650px;
+                width: 100%;
+                object-fit: cover;
+            }
+
+            /* Hide desktop arrows */
+            .gallery-nav-btn {
+                display: none;
+            }
+
+            /* Show dot indicators */
+            .gallery-dots {
+                display: flex;
+                position: absolute;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                gap: 8px;
+                z-index: 20;
+                background: rgba(0, 0, 0, 0.3);
+                backdrop-filter: blur(8px);
+                padding: 8px 16px;
+                border-radius: 20px;
+            }
+
+            .gallery-dot {
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.5);
+                transition: all 0.3s ease;
+            }
+
+            .gallery-dot.active {
+                width: 20px;
+                border-radius: 3px;
+                background: white;
+            }
+
+            /* Horizontal scrolling thumbnails */
             .thumbnail-container {
                 display: flex;
                 overflow-x: auto;
                 scroll-snap-type: x mandatory;
                 -webkit-overflow-scrolling: touch;
                 scrollbar-width: none;
-                gap: 0.75rem;
-                padding: 0 1rem;
+                gap: 10px;
+                padding: 0 1rem 0.5rem 1rem;
                 margin-top: 1rem;
             }
-            
+
             .thumbnail-container::-webkit-scrollbar {
                 display: none;
             }
-            
-            .thumbnail-container .thumbnail {
-                flex: 0 0 80px;
-                scroll-snap-align: start;
-                height: 80px;
-                width: 80px;
-            }
-        }
 
-        .thumbnail{ 
-            cursor: pointer; 
-            opacity: 0.6; 
-            transition: all .3s ease; 
-            border: 3px solid transparent;
-            filter: grayscale(30%);
-        }
-        
-        .thumbnail.active, .thumbnail:hover{ 
-            opacity: 1; 
-            border-color: var(--leather-brown); 
-            filter: grayscale(0%);
-            transform: scale(1.05);
+            .thumbnail {
+                flex: 0 0 75px;
+                height: 75px;
+                width: 75px;
+                scroll-snap-align: start;
+                border-radius: 8px;
+                border-width: 2px;
+            }
+
+            .thumbnail.active {
+                border-width: 3px;
+                flex: 0 0 78px;
+                height: 78px;
+                width: 78px;
+            }
         }
 
         .price-box {
@@ -210,17 +259,7 @@
                 radial-gradient(circle at 20% 50%, transparent 0%, rgba(0,0,0,0.03) 100%),
                 radial-gradient(circle at 80% 80%, transparent 0%, rgba(0,0,0,0.02) 100%);
             pointer-events: none;
-        }
-
-        @media (max-width:768px){
-            .sticky-cta{ 
-                position: fixed; 
-                bottom: 0; 
-                left: 0; 
-                right: 0; 
-                z-index: 50; 
-                box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
-            }
+            border-radius: inherit;
         }
     </style>
 </head>
@@ -266,28 +305,29 @@
             </div>
         </div>
 
-        <div class="max-w-6xl mx-auto px-4 md:px-0">
-            <div class="gallery-container bg-white rounded-2xl shadow-2xl overflow-hidden md:p-4 leather-texture -mx-4 md:mx-0">
+        <!-- Gallery -->
+        <div class="max-w-6xl mx-auto gallery-wrapper">
+            <div class="gallery-container shadow-2xl leather-texture">
                 <div class="gallery-slide active" data-slide="0">
-                    <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=1400&q=85&auto=format&fit=crop" alt="حذاء جلدي فاخر" class="w-full h-[450px] mx-auto object-cover md:rounded-xl">
+                    <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=1600&q=90&auto=format&fit=crop" alt="حذاء جلدي فاخر">
                 </div>
                 <div class="gallery-slide" data-slide="1">
-                    <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=1400&q=85&auto=format&fit=crop" alt="حذاء جلدي بني" class="w-full h-[450px] mx-auto object-cover md:rounded-xl">
+                    <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=1600&q=90&auto=format&fit=crop" alt="حذاء جلدي بني">
                 </div>
                 <div class="gallery-slide" data-slide="2">
-                    <img src="https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=1400&q=85&auto=format&fit=crop" alt="حذاء رياضي جلدي" class="w-full h-[450px] mx-auto object-cover md:rounded-xl">
+                    <img src="https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=1600&q=90&auto=format&fit=crop" alt="حذاء رياضي جلدي">
                 </div>
                 <div class="gallery-slide" data-slide="3">
-                    <img src="https://images.unsplash.com/photo-1603808033192-082d6919d3e1?w=1400&q=85&auto=format&fit=crop" alt="حذاء كاجوال" class="w-full h-[450px] mx-auto object-cover md:rounded-xl">
+                    <img src="https://images.unsplash.com/photo-1603808033192-082d6919d3e1?w=1600&q=90&auto=format&fit=crop" alt="حذاء كاجوال">
                 </div>
                 <div class="gallery-slide" data-slide="4">
-                    <img src="https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=1400&q=85&auto=format&fit=crop" alt="حذاء رسمي" class="w-full h-[450px] mx-auto object-cover md:rounded-xl">
+                    <img src="https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=1600&q=90&auto=format&fit=crop" alt="حذاء رسمي">
                 </div>
                 <div class="gallery-slide" data-slide="5">
-                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1400&q=85&auto=format&fit=crop" alt="حذاء عصري" class="w-full h-[450px] mx-auto object-cover md:rounded-xl">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600&q=90&auto=format&fit=crop" alt="حذاء عصري">
                 </div>
 
-                <!-- Dot indicators for mobile -->
+                <!-- Dot indicators (mobile only) -->
                 <div class="gallery-dots">
                     <div class="gallery-dot active" data-dot="0"></div>
                     <div class="gallery-dot" data-dot="1"></div>
@@ -297,31 +337,34 @@
                     <div class="gallery-dot" data-dot="5"></div>
                 </div>
 
-                <!-- Navigation arrows (desktop only) -->
-                <button class="gallery-nav-btn absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/95 hover:bg-white text-stone-900 rounded-full p-4 shadow-2xl transition hover:scale-110" onclick="changeSlide(-1)" aria-label="الصورة السابقة">
+                <!-- Navigation (desktop only) -->
+                <button class="gallery-nav-btn prev" onclick="changeSlide(-1)" aria-label="الصورة السابقة">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                     </svg>
                 </button>
-                <button class="gallery-nav-btn absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/95 hover:bg-white text-stone-900 rounded-full p-4 shadow-2xl transition hover:scale-110" onclick="changeSlide(1)" aria-label="الصورة التالية">
+                <button class="gallery-nav-btn next" onclick="changeSlide(1)" aria-label="الصورة التالية">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                     </svg>
                 </button>
             </div>
 
-            <!-- Scrollable thumbnails -->
+            <!-- Thumbnails -->
             <div class="thumbnail-container">
-                <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=300&q=70&auto=format&fit=crop" class="thumbnail active rounded-xl cursor-pointer h-20 md:h-28 w-full object-cover shadow-md" onclick="goToSlide(0)" alt="معاينة 1">
-                <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=300&q=70&auto=format&fit=crop" class="thumbnail rounded-xl cursor-pointer h-20 md:h-28 w-full object-cover shadow-md" onclick="goToSlide(1)" alt="معاينة 2">
-                <img src="https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=300&q=70&auto=format&fit=crop" class="thumbnail rounded-xl cursor-pointer h-20 md:h-28 w-full object-cover shadow-md" onclick="goToSlide(2)" alt="معاينة 3">
-                <img src="https://images.unsplash.com/photo-1603808033192-082d6919d3e1?w=300&q=70&auto=format&fit=crop" class="thumbnail rounded-xl cursor-pointer h-20 md:h-28 w-full object-cover shadow-md" onclick="goToSlide(3)" alt="معاينة 4">
-                <img src="https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=300&q=70&auto=format&fit=crop" class="thumbnail rounded-xl cursor-pointer h-20 md:h-28 w-full object-cover shadow-md" onclick="goToSlide(4)" alt="معاينة 5">
-                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&q=70&auto=format&fit=crop" class="thumbnail rounded-xl cursor-pointer h-20 md:h-28 w-full object-cover shadow-md" onclick="goToSlide(5)" alt="معاينة 6">
+                <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=200&q=80&auto=format&fit=crop" class="thumbnail active" onclick="goToSlide(0)" alt="معاينة 1">
+                <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=200&q=80&auto=format&fit=crop" class="thumbnail" onclick="goToSlide(1)" alt="معاينة 2">
+                <img src="https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=200&q=80&auto=format&fit=crop" class="thumbnail" onclick="goToSlide(2)" alt="معاينة 3">
+                <img src="https://images.unsplash.com/photo-1603808033192-082d6919d3e1?w=200&q=80&auto=format&fit=crop" class="thumbnail" onclick="goToSlide(3)" alt="معاينة 4">
+                <img src="https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=200&q=80&auto=format&fit=crop" class="thumbnail" onclick="goToSlide(4)" alt="معاينة 5">
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200&q=80&auto=format&fit=crop" class="thumbnail" onclick="goToSlide(5)" alt="معاينة 6">
             </div>
         </div>
+
     </div>
 </section>
+
+
 
 <section class="py-12 md:py-20 bg-stone-50" id="description">
     <div class="container mx-auto px-4">
