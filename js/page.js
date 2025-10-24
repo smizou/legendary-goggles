@@ -165,4 +165,71 @@ function updatePrices() {
 }
 
 // Initialize prices on load
-updatePrices();    
+updatePrices();
+
+
+// ============================================
+// MOBILE GALLERY ENHANCEMENTS
+// ============================================
+
+// Only run if gallery exists on the page
+if (document.querySelector('.gallery-container')) {
+    
+    // Touch swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const galleryContainer = document.querySelector('.gallery-container');
+
+    if (galleryContainer) {
+        galleryContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        galleryContainer.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleGallerySwipe();
+        }, { passive: true });
+
+        function handleGallerySwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    changeSlide(1);  // Swipe left = next
+                } else {
+                    changeSlide(-1); // Swipe right = previous
+                }
+            }
+        }
+    }
+
+    // Enhance the existing showSlide function to update dots
+    const originalShowSlide = window.showSlide || showSlide;
+    window.showSlide = function(index) {
+        // Call original function
+        if (typeof originalShowSlide === 'function') {
+            originalShowSlide(index);
+        }
+        
+        // Update dots if they exist
+        const dots = document.querySelectorAll('.gallery-dot');
+        if (dots.length > 0) {
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+        }
+
+        // Auto-scroll active thumbnail on mobile
+        const activeThumbnail = document.querySelector('.thumbnail.active');
+        if (activeThumbnail && window.innerWidth <= 768) {
+            setTimeout(() => {
+                activeThumbnail.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    inline: 'center', 
+                    block: 'nearest' 
+                });
+            }, 100);
+        }
+    };
+} 
