@@ -458,6 +458,9 @@
     </div>
 </section>
 
+
+
+
 <section class="py-16 md:py-24 bg-gradient-to-b from-white to-stone-100 scroll-mt-24" id="order-form">
     <div class="container mx-auto px-4">
         <div class="max-w-3xl mx-auto">
@@ -470,26 +473,26 @@
                 </p>
             </div>
 
-            <form id="orderForm" data-dynamic-form class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 leather-texture border-t-4 border-amber-600">
+            <form id="orderForm" data-dynamic-form class="bg-white shadow-2xl p-8 md:p-12 border-t-4 border-green-600">
                 <div class="mb-7">
                     <label for="fullName" class="block font-bold mb-3 text-lg text-stone-900">
                         الاسم الكامل <span class="text-red-600">*</span>
                     </label>
-                    <input type="text" id="fullName" name="fullName" required class="w-full px-5 py-4 rounded-xl border-2 border-stone-300 focus:border-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-200 transition" placeholder="مثال: أحمد بن محمد" />
+                    <input type="text" id="fullName" name="fullName" required class="w-full px-5 py-4 rounded-lg border-2 border-stone-300 focus:border-green-600 focus:outline-none focus:ring-2 focus:ring-green-200 transition" placeholder="مثال: أحمد بن محمد" />
                 </div>
 
                 <div class="mb-7">
                     <label for="phone" class="block font-bold mb-3 text-lg text-stone-900">
                         رقم الهاتف <span class="text-red-600">*</span>
                     </label>
-                    <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" dir="ltr" class="w-full px-5 py-4 rounded-xl border-2 border-stone-300 focus:border-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-200 transition text-right" placeholder="مثال : 0660112233" />
+                    <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" dir="ltr" class="w-full px-5 py-4 rounded-lg border-2 border-stone-300 focus:border-green-600 focus:outline-none focus:ring-2 focus:ring-green-200 transition text-right" placeholder="مثال : 0660112233" />
                 </div>
 
                 <div class="mb-7">
                     <label for="wilaya" class="block font-bold mb-3 text-lg text-stone-900">
                         الولاية <span class="text-red-600">*</span>
                     </label>
-                    <select id="wilaya" name="wilaya" required class="w-full px-5 py-4 rounded-xl border-2 border-stone-300 focus:border-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-200 transition">
+                    <select id="wilaya" name="wilaya" required class="w-full px-5 py-4 rounded-lg border-2 border-stone-300 focus:border-green-600 focus:outline-none focus:ring-2 focus:ring-green-200 transition">
                         <option value="">اختر الولاية</option>
                     </select>
                     <div class="text-red-600 text-sm mt-2 hidden" id="wilayaError">
@@ -501,51 +504,141 @@
                     <label for="commune" class="block font-bold mb-3 text-lg text-stone-900">
                         البلدية <span class="text-red-600">*</span>
                     </label>
-                    <select id="commune" name="commune" disabled required class="w-full px-5 py-4 rounded-xl border-2 border-stone-300 focus:border-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-200 transition">
+                    <select id="commune" name="commune" disabled required class="w-full px-5 py-4 rounded-lg border-2 border-stone-300 focus:border-green-600 focus:outline-none focus:ring-2 focus:ring-green-200 transition">
                         <option value="">اختر البلدية</option>
                     </select>
                     <div class="text-red-600 text-sm mt-2 hidden" id="communeError">
-                        الرجاء اختيار البلدية
+                        الrجاء اختيار البلدية
                     </div>
                 </div>
 
                 <div class="mb-7">
-                    <label for="size" class="block font-bold mb-3 text-lg text-stone-900">
+                    <label class="block font-bold mb-4 text-lg text-stone-900">
                         المقاس <span class="text-red-600">*</span>
                     </label>
-                    <select id="size" name="size" required class="w-full px-5 py-4 rounded-xl border-2 border-stone-300 focus:border-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-200 transition">
-                        <option value="">اختر المقاس</option>
-                        <option value="36">36</option>
-                        <option value="37">37</option>
-                        <option value="38">38</option>
-                        <option value="39">39</option>
-                        <option value="40">40</option>
-                        <option value="41">41</option>
-                        <option value="42">42</option>
-                        <option value="43">43</option>
-                        <option value="44">44</option>
-                        <option value="45">45</option>
-                        <option value="46">46</option>
-                    </select>
-                </div>
-
-                <div class="mb-7">
-                    <label for="color" class="block font-bold mb-4 text-lg text-stone-900">
-                        اللون <span class="text-red-600">*</span>
-                    </label>
-                    <div id="color" class="flex flex-wrap gap-4">
+                    <div id="size" class="flex flex-wrap gap-3">
                         <label class="cursor-pointer group">
-                            <input type="radio" name="color" value="أسود" class="hidden peer" required>
-                            <div class="flex flex-col items-center gap-2">
-                                <div class="w-14 h-14 rounded-full border-4 border-transparent peer-checked:border-amber-600 peer-checked:shadow-lg bg-black transition-all group-hover:scale-110"></div>
-                                <span class="text-sm font-semibold text-stone-700 peer-checked:text-amber-600">أسود</span>
+                            <input type="radio" name="size" value="36" class="hidden peer" required>
+                            <div class="px-5 py-3 rounded-lg border-2 border-stone-300 text-center font-semibold text-stone-700 transition-all peer-checked:border-green-600 peer-checked:bg-green-100 peer-checked:text-green-900 group-hover:border-green-400">
+                                36
                             </div>
                         </label>
                         <label class="cursor-pointer group">
+                            <input type="radio" name="size" value="37" class="hidden peer" required>
+                            <div class="px-5 py-3 rounded-lg border-2 border-stone-300 text-center font-semibold text-stone-700 transition-all peer-checked:border-green-600 peer-checked:bg-green-100 peer-checked:text-green-900 group-hover:border-green-400">
+                                37
+                            </div>
+                        </label>
+                        <label class="cursor-pointer group">
+                            <input type="radio" name="size" value="38" class="hidden peer" required>
+                            <div class="px-5 py-3 rounded-lg border-2 border-stone-300 text-center font-semibold text-stone-700 transition-all peer-checked:border-green-600 peer-checked:bg-green-100 peer-checked:text-green-900 group-hover:border-green-400">
+                                38
+                            </div>
+                        </label>
+                        <label class="cursor-pointer group">
+                            <input type="radio" name="size" value="39" class="hidden peer" required>
+                            <div class="px-5 py-3 rounded-lg border-2 border-stone-300 text-center font-semibold text-stone-700 transition-all peer-checked:border-green-600 peer-checked:bg-green-100 peer-checked:text-green-900 group-hover:border-green-400">
+                                39
+                            </div>
+                        </label>
+                        <label class="cursor-pointer group">
+                            <input type="radio" name="size" value="40" class="hidden peer" required>
+                            <div class="px-5 py-3 rounded-lg border-2 border-stone-300 text-center font-semibold text-stone-700 transition-all peer-checked:border-green-600 peer-checked:bg-green-100 peer-checked:text-green-900 group-hover:border-green-400">
+                                40
+                            </div>
+                        </label>
+                        <label class="cursor-pointer group">
+                            <input type="radio" name="size" value="41" class="hidden peer" required>
+                            <div class="px-5 py-3 rounded-lg border-2 border-stone-300 text-center font-semibold text-stone-700 transition-all peer-checked:border-green-600 peer-checked:bg-green-100 peer-checked:text-green-900 group-hover:border-green-400">
+                                41
+                            </div>
+                        </label>
+                        <label class="cursor-pointer group">
+                            <input type="radio" name="size" value="42" class="hidden peer" required>
+                            <div class="px-5 py-3 rounded-lg border-2 border-stone-300 text-center font-semibold text-stone-700 transition-all peer-checked:border-green-600 peer-checked:bg-green-100 peer-checked:text-green-900 group-hover:border-green-400">
+                                42
+                            </div>
+                        </label>
+                        <label class="cursor-pointer group">
+                            <input type="radio" name="size" value="43" class="hidden peer" required>
+                            <div class="px-5 py-3 rounded-lg border-2 border-stone-300 text-center font-semibold text-stone-700 transition-all peer-checked:border-green-600 peer-checked:bg-green-100 peer-checked:text-green-900 group-hover:border-green-400">
+                                43
+                            </div>
+                        </label>
+                        <label class="cursor-pointer group">
+                            <input type="radio" name="size" value="44" class="hidden peer" required>
+                            <div class="px-5 py-3 rounded-lg border-2 border-stone-300 text-center font-semibold text-stone-700 transition-all peer-checked:border-green-600 peer-checked:bg-green-100 peer-checked:text-green-900 group-hover:border-green-400">
+                                44
+                            </div>
+                        </label>
+                        <label class="cursor-pointer group">
+                            <input type="radio" name="size" value="45" class="hidden peer" required>
+                            <div class="px-5 py-3 rounded-lg border-2 border-stone-300 text-center font-semibold text-stone-700 transition-all peer-checked:border-green-600 peer-checked:bg-green-100 peer-checked:text-green-900 group-hover:border-green-400">
+                                45
+                            </div>
+                        </label>
+                        <label class="cursor-pointer group">
+                            <input type="radio" name="size" value="46" class="hidden peer" required>
+                            <div class="px-5 py-3 rounded-lg border-2 border-stone-300 text-center font-semibold text-stone-700 transition-all peer-checked:border-green-600 peer-checked:bg-green-100 peer-checked:text-green-900 group-hover:border-green-400">
+                                46
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mb-7">
+                    <label class="block font-bold mb-4 text-lg text-stone-900">
+                        اللون <span class="text-red-600">*</span>
+                    </label>
+                    <div id="color" class="flex flex-wrap gap-4">
+                        <label class="cursor-pointer group relative">
+                            <input type="radio" name="color" value="أسود" class="hidden peer" required>
+                            <div class="flex flex-col items-center gap-2">
+                                <div class="w-14 h-14 rounded-full border-4 border-transparent bg-black transition-all duration-200 group-hover:scale-110 peer-checked:border-green-600 peer-checked:ring-4 peer-checked:ring-green-200 peer-checked:ring-offset-2 peer-checked:ring-offset-white"></div>
+                                <span class="text-sm font-semibold text-stone-700 peer-checked:text-green-600 peer-checked:font-black">أسود</span>
+                            </div>
+                            <div class="absolute top-3 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-green-600 rounded-full flex items-center justify-center text-white text-xs font-bold opacity-0 peer-checked:opacity-100 transition-opacity duration-200">
+                                ✓
+                            </div>
+                        </label>
+                        <label class="cursor-pointer group relative">
                             <input type="radio" name="color" value="أبيض" class="hidden peer" required>
                             <div class="flex flex-col items-center gap-2">
-                                <div class="w-14 h-14 rounded-full border-2 border-stone-400 bg-white peer-checked:border-4 peer-checked:border-amber-600 peer-checked:shadow-lg transition-all group-hover:scale-110"></div>
-                                <span class="text-sm font-semibold text-stone-700 peer-checked:text-amber-600">أبيض</span>
+                                <div class="w-14 h-14 rounded-full border-2 border-stone-400 bg-white peer-checked:border-4 peer-checked:border-green-600 peer-checked:ring-4 peer-checked:ring-green-200 peer-checked:ring-offset-2 peer-checked:ring-offset-white transition-all duration-200 group-hover:scale-110"></div>
+                                <span class="text-sm font-semibold text-stone-700 peer-checked:text-green-600 peer-checked:font-black">أبيض</span>
+                            </div>
+                            <div class="absolute top-3 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-green-600 rounded-full flex items-center justify-center text-white text-xs font-bold opacity-0 peer-checked:opacity-100 transition-opacity duration-200">
+                                ✓
+                            </div>
+                        </label>
+                        <label class="cursor-pointer group relative">
+                            <input type="radio" name="color" value="أزرق" class="hidden peer" required>
+                            <div class="flex flex-col items-center gap-2">
+                                <div class="w-14 h-14 rounded-full border-4 border-transparent bg-blue-600 transition-all duration-200 group-hover:scale-110 peer-checked:border-green-600 peer-checked:ring-4 peer-checked:ring-green-200 peer-checked:ring-offset-2 peer-checked:ring-offset-white"></div>
+                                <span class="text-sm font-semibold text-stone-700 peer-checked:text-green-600 peer-checked:font-black">أزرق</span>
+                            </div>
+                            <div class="absolute top-3 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-green-600 rounded-full flex items-center justify-center text-white text-xs font-bold opacity-0 peer-checked:opacity-100 transition-opacity duration-200">
+                                ✓
+                            </div>
+                        </label>
+                        <label class="cursor-pointer group relative">
+                            <input type="radio" name="color" value="أحمر" class="hidden peer" required>
+                            <div class="flex flex-col items-center gap-2">
+                                <div class="w-14 h-14 rounded-full border-4 border-transparent bg-red-600 transition-all duration-200 group-hover:scale-110 peer-checked:border-green-600 peer-checked:ring-4 peer-checked:ring-green-200 peer-checked:ring-offset-2 peer-checked:ring-offset-white"></div>
+                                <span class="text-sm font-semibold text-stone-700 peer-checked:text-green-600 peer-checked:font-black">أحمر</span>
+                            </div>
+                            <div class="absolute top-3 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-green-600 rounded-full flex items-center justify-center text-white text-xs font-bold opacity-0 peer-checked:opacity-100 transition-opacity duration-200">
+                                ✓
+                            </div>
+                        </label>
+                        <label class="cursor-pointer group relative">
+                            <input type="radio" name="color" value="أخضر" class="hidden peer" required>
+                            <div class="flex flex-col items-center gap-2">
+                                <div class="w-14 h-14 rounded-full border-4 border-transparent bg-green-600 transition-all duration-200 group-hover:scale-110 peer-checked:border-green-600 peer-checked:ring-4 peer-checked:ring-green-200 peer-checked:ring-offset-2 peer-checked:ring-offset-white"></div>
+                                <span class="text-sm font-semibold text-stone-700 peer-checked:text-green-600 peer-checked:font-black">أخضر</span>
+                            </div>
+                            <div class="absolute top-3 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-green-600 rounded-full flex items-center justify-center text-white text-xs font-bold opacity-0 peer-checked:opacity-100 transition-opacity duration-200">
+                                ✓
                             </div>
                         </label>
                     </div>
@@ -555,7 +648,11 @@
                     <label for="quantity" class="block font-bold mb-3 text-lg text-stone-900">
                         الكمية <span class="text-red-600">*</span>
                     </label>
-                    <input type="number" id="quantity" name="quantity" required min="1" max="10" value="1" class="w-full px-5 py-4 rounded-xl border-2 border-stone-300 focus:border-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-200 transition" />
+                    <div class="relative w-full">
+                        <input type="number" id="quantity" name="quantity" required min="1" max="10" value="1" class="quantity-input w-full px-16 py-4 rounded-lg border-2 border-stone-300 focus:border-green-600 focus:outline-none focus:ring-2 focus:ring-green-200 transition text-center text-xl font-bold" readonly />
+                        <button type="button" id="decreaseQty" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-stone-200 text-stone-700 font-bold text-xl flex items-center justify-center hover:bg-green-100 hover:text-green-700 transition">−</button>
+                        <button type="button" id="increaseQty" class="absolute right-3 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-stone-200 text-stone-700 font-bold text-xl flex items-center justify-center hover:bg-green-100 hover:text-green-700 transition">+</button>
+                    </div>
                 </div>
 
                 <div class="mb-7">
@@ -563,34 +660,34 @@
                         طريقة التوصيل <span class="text-red-600">*</span>
                     </label>
                     <div id="deliveryType" class="flex flex-col md:flex-row md:items-center gap-4 md:gap-6 mb-5">
-                        <label class="inline-flex items-center cursor-pointer bg-stone-50 px-6 py-4 rounded-xl border-2 border-stone-200 hover:border-amber-600 transition has-[:checked]:border-amber-600 has-[:checked]:bg-amber-50">
-                            <input type="radio" name="deliveryType" value="home" checked class="form-radio h-5 w-5 text-amber-600" />
+                        <label class="inline-flex items-center cursor-pointer bg-stone-50 px-6 py-4 rounded-lg border-2 border-stone-200 hover:border-green-600 transition has-[:checked]:border-green-600 has-[:checked]:bg-green-50">
+                            <input type="radio" name="deliveryType" value="home" checked class="form-radio h-5 w-5 text-green-600" />
                             <span class="mr-3 font-semibold text-stone-900">🚚 توصيل إلى المنزل</span>
                         </label>
-                        <label class="inline-flex items-center cursor-pointer bg-stone-50 px-6 py-4 rounded-xl border-2 border-stone-200 hover:border-amber-600 transition has-[:checked]:border-amber-600 has-[:checked]:bg-amber-50">
-                            <input type="radio" name="deliveryType" value="desk" class="form-radio h-5 w-5 text-amber-600" />
+                        <label class="inline-flex items-center cursor-pointer bg-stone-50 px-6 py-4 rounded-lg border-2 border-stone-200 hover:border-green-600 transition has-[:checked]:border-green-600 has-[:checked]:bg-green-50">
+                            <input type="radio" name="deliveryType" value="desk" class="form-radio h-5 w-5 text-green-600" />
                             <span class="mr-3 font-semibold text-stone-900">🏢 استلام من المكتب</span>
                         </label>
                     </div>
 
-                    <div id="pricedisplay" class="bg-gradient-to-br from-amber-50 to-amber-100 rounded-2xl p-6 border-2 border-amber-200 shadow-lg">
-                        <div class="flex justify-between mb-3 pb-3 border-b border-amber-200">
+                    <div id="pricedisplay" class="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border-2 border-green-200 shadow-lg">
+                        <div class="flex justify-between mb-3 pb-3 border-b border-green-200">
                             <span class="font-bold text-stone-900">سعر المنتج</span>
-                            <span id="productPrice" class="font-black text-amber-900 text-lg">8,500 د.ج</span>
+                            <span id="productPrice" class="font-black text-green-900 text-lg">8,500 د.ج</span>
                         </div>
                         <div class="flex justify-between mb-3">
                             <span class="text-stone-700 font-semibold">تكلفة التوصيل</span>
                             <span id="deliveryPrice" class="font-bold text-stone-900">-- د.ج</span>
                         </div>
-                        <hr class="my-3 border-amber-300" />
+                        <hr class="my-3 border-green-300" />
                         <div class="flex justify-between items-center">
                             <span class="font-black text-xl text-stone-900">الإجمالي</span>
-                            <span id="totalPrice" class="font-black text-2xl text-amber-900">-- د.ج</span>
+                            <span id="totalPrice" class="font-black text-2xl text-green-900">-- د.ج</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-7 flex flex-col md:flex-row items-center justify-center gap-4 bg-gradient-to-r from-red-50 to-orange-50 border-2 border-red-200 rounded-2xl p-5 shadow-md">
+                <div class="mt-7 flex flex-col md:flex-row items-center justify-center gap-4 bg-gradient-to-r from-red-50 to-orange-50 border-2 border-red-200 rounded-lg p-5 shadow-md">
                     <img src="https://yalidine-express.com.dz/assets/img/yalidine-logo.png" alt="Yalidine Express" class="h-12 object-contain" />
                     <span class="font-bold text-lg text-stone-900 text-center">
                         يتم التوصيل عبر <span class="text-red-700 font-black">Yalidine Express</span> 🚚
@@ -599,25 +696,25 @@
 
                 <div class="mb-8 mt-7">
                     <label class="flex items-start cursor-pointer group">
-                        <input type="checkbox" id="terms" name="terms" required class="mt-1 ml-3 w-6 h-6 border-2 rounded-lg focus:ring-amber-600 text-amber-600" />
+                        <input type="checkbox" id="terms" name="terms" required class="mt-1 ml-3 w-6 h-6 border-2 rounded-lg focus:ring-green-600 text-green-600" />
                         <span class="text-stone-900 leading-relaxed">
                             أوافق على
-                            <a href="#" class="underline font-bold text-amber-700 hover:text-amber-900">شروط الخدمة</a>
+                            <a href="#" class="underline font-bold text-green-700 hover:text-green-900">شروط الخدمة</a>
                             و
-                            <a href="#" class="underline font-bold text-amber-700 hover:text-amber-900">سياسة الاسترجاع</a>
+                            <a href="#" class="underline font-bold text-green-700 hover:text-green-900">سياسة الاسترجاع</a>
                             <span class="text-red-600">*</span>
                         </span>
                     </label>
                 </div>
 
-                <button type="submit" class="w-full text-white px-10 py-5 rounded-2xl font-black text-2xl shadow-2xl mb-5 btn-primary">
+                <button type="submit" class="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white px-10 py-5 rounded-lg font-black text-2xl shadow-2xl mb-5 transition-all hover:scale-[1.02] active:scale-100">
                     ✅ تأكيد الطلب الآن
                 </button>
 
-                <div class="text-center bg-stone-50 rounded-xl p-5">
+                <div class="text-center bg-stone-50 rounded-lg p-5">
                     <p class="mb-3 text-stone-700 text-lg">
                         للطلب عبر الهاتف:
-                        <strong dir="ltr" class="block md:inline-block text-2xl text-amber-900 font-black mt-2 md:mt-0">
+                        <strong dir="ltr" class="block md:inline-block text-2xl text-green-900 font-black mt-2 md:mt-0">
                             +213 660 000 000
                         </strong>
                     </p>
@@ -629,6 +726,10 @@
         </div>
     </div>
 </section>
+
+
+
+
 
 <section class="py-16 md:py-24 bg-stone-50" id="faq">
     <div class="container mx-auto px-4">
