@@ -218,7 +218,7 @@
                 background: white;
             }
 
-            /* Horizontal scrolling thumbnails - FIX BORDER CUTOFF */
+            /* Horizontal scrolling thumbnails - SMOOTH SCROLL */
             .thumbnail-container {
                 display: flex;
                 overflow-x: auto;
@@ -229,6 +229,8 @@
                 gap: 12px;
                 padding: 1rem;
                 margin-top: 1rem;
+                scroll-behavior: smooth;
+                scroll-padding: 1rem;
             }
 
             .thumbnail-container::-webkit-scrollbar {
@@ -254,8 +256,17 @@
         }
 
         .price-box {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            box-shadow: 0 10px 40px rgba(120, 53, 15, 0.2), inset 0 1px 0 rgba(255,255,255,0.5);
+            background: white;
+            border: 1px solid #e7e5e4;
+            border-radius: 16px;
+            padding: 2rem 3rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .price-box:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            transform: translateY(-2px);
         }
 
         .leather-texture {
@@ -301,17 +312,21 @@
         </div>
 
         <div class="flex justify-center mb-10">
-            <div class="price-box relative rounded-2xl p-8 border-4 border-amber-600 text-center leather-texture">
-                <span class="inline-block bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-2 rounded-full text-sm font-bold mb-4 shadow-lg animate-pulse">
-                    ⚡ عرض حصري - الكمية محدودة
-                </span>
-                <p class="text-6xl md:text-7xl font-black text-stone-900 mb-2">8,500 د.ج</p>
-                <p class="text-base text-stone-700 font-semibold">شامل التوصيل لجميع الولايات</p>
-                <div class="mt-4 flex items-center justify-center gap-2 text-stone-600">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span class="text-sm">ضمان استرجاع المال خلال 14 يوم</span>
+            <div class="price-box relative text-center">
+                <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                    <span class="inline-block bg-red-600 text-white px-6 py-2 rounded-full text-xs font-bold shadow-lg uppercase tracking-wide">
+                        عرض محدود
+                    </span>
+                </div>
+                <div class="pt-4">
+                    <p class="text-sm text-stone-500 line-through mb-1">12,000 د.ج</p>
+                    <p class="text-5xl md:text-6xl font-black text-stone-900 mb-2">8,500 د.ج</p>
+                    <div class="flex items-center justify-center gap-2 text-green-700 bg-green-50 px-4 py-2 rounded-lg mx-auto w-fit">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        <span class="text-sm font-semibold">توصيل مجاني</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -374,6 +389,7 @@
 
     </div>
 </section>
+
 
 
 
