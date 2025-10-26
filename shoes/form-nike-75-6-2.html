@@ -1,0 +1,566 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نموذج طلب المنتج</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" id="meta-description" content="">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="product">
+    <meta property="og:title" id="og-title" content="">
+    <meta property="og:description" id="og-description" content="">
+    <meta property="og:image" id="og-image" content="">
+    <meta property="og:url" id="og-url" content="">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" id="twitter-title" content="">
+    <meta name="twitter:description" id="twitter-description" content="">
+    <meta name="twitter:image" id="twitter-image" content="">
+    <!-- JSON-LD for Google Rich Snippets -->
+    <script type="application/ld+json" id="product-json-ld"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        .animate-spin {
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-gray-100">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-4xl">
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+            <div class="md:flex">
+                <!-- Product Image Gallery -->
+                <div class="md:w-1/2 p-4">
+                    <img id="main-product-image" class="w-full h-auto object-cover rounded-lg" src="https://via.placeholder.com/600x600/CCCCCC/FFFFFF?text=NIKE" alt="حذاء رياضي">
+                    <div class="flex space-x-2 mt-4 rtl:space-x-reverse" id="thumbnail-container">
+                        <!-- Thumbnails will be generated here -->
+                    </div>
+                </div>
+
+                <!-- Product Details & Form -->
+                <div class="md:w-1/2 p-6 flex flex-col">
+                    <span id="product-sku" class="text-sm text-gray-500 font-mono"></span>
+                    <h1 id="product-name" class="text-3xl font-bold text-gray-900 mt-1"></h1>
+                    <p id="product-price" class="text-3xl font-bold text-teal-600 my-4"></p>
+                    <p id="product-description" class="text-gray-600 text-base mb-6 leading-relaxed"></p>
+
+                    <form id="order-form" class="space-y-6 flex-grow flex flex-col">
+                        <!-- Variants -->
+                        <div id="variants-container">
+                           <!-- Variants will be generated here -->
+                        </div>
+
+                        <!-- Quantity -->
+                        <div>
+                            <label class="block text-lg font-semibold text-gray-800 mb-2">الكمية</label>
+                            <div class="flex items-center border border-gray-300 rounded-lg max-w-[120px]">
+                                <button type="button" id="quantity-minus" class="px-4 py-2 text-xl text-gray-600 hover:bg-gray-100 rounded-r-lg">-</button>
+                                <input type="number" id="quantity" value="1" min="1" class="w-full text-center border-l border-r font-bold text-lg" readonly>
+                                <button type="button" id="quantity-plus" class="px-4 py-2 text-xl text-gray-600 hover:bg-gray-100 rounded-l-lg">+</button>
+                            </div>
+                        </div>
+
+                        <!-- Total Price -->
+                        <div class="border-t border-b border-gray-200 py-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-semibold text-gray-800">السعر الإجمالي</span>
+                                <span id="total-price" class="text-2xl font-bold text-teal-600"></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Info Form -->
+        <div class="bg-white rounded-2xl shadow-lg mt-8 p-6">
+             <h2 class="text-2xl font-bold text-gray-800 mb-6">معلومات الزبون</h2>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <input type="text" id="customer_name" placeholder="الإسم الكامل *" required class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500">
+                <input type="tel" id="customer_phone" placeholder="رقم الهاتف *" required class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-right">
+                <select id="wilaya" required class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500">
+                    <option value="" disabled selected>اختر الولاية *</option>
+                </select>
+                <select id="commune" required disabled class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 disabled:bg-gray-100">
+                    <option value="" disabled selected>اختر البلدية *</option>
+                </select>
+                <input type="text" id="street_address" placeholder="العنوان الكامل (الحي، الشارع، إلخ) *" required class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 md:col-span-2">
+             </div>
+        </div>
+
+        <div class="mt-8">
+           <button type="button" id="submit-button" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-4 px-4 rounded-lg text-lg transition duration-300 flex items-center justify-center">
+               <span id="submit-text">أطلب الآن</span>
+               <svg id="submit-spinner" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                   <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                   <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+               </svg>
+           </button>
+        </div>
+    </div>
+    
+    <!-- Modals for feedback -->
+    <div id="success-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-lg p-8 text-center shadow-xl">
+            <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-4">
+                <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            </div>
+            <h3 class="text-lg font-medium text-gray-900">تم إرسال طلبك بنجاح!</h3>
+            <p class="mt-2 text-sm text-gray-500">سوف نتصل بك قريباً للتأكيد.</p>
+            <button onclick="document.getElementById('success-modal').classList.add('hidden')" class="mt-4 px-4 py-2 bg-green-600 text-white rounded-lg">حسنًا</button>
+        </div>
+    </div>
+    <div id="error-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-lg p-8 text-center shadow-xl">
+            <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100 mb-4">
+                 <svg class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            </div>
+            <h3 class="text-lg font-medium text-gray-900">حدث خطأ ما!</h3>
+            <p id="error-message" class="mt-2 text-sm text-gray-500">الرجاء المحاولة مرة أخرى أو الاتصال بنا مباشرة.</p>
+            <button onclick="document.getElementById('error-modal').classList.add('hidden')" class="mt-4 px-4 py-2 bg-red-600 text-white rounded-lg">إغلاق</button>
+        </div>
+    </div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // ========================================================================
+    // --- 1. CONFIGURATION: UPDATE YOUR PRODUCT DETAILS HERE ---
+    // ========================================================================
+    const productData = {
+    "id": 6,
+    "sku": "NIKE75",
+    "name": "Nike 75",
+    "price": 12000,
+    "description": "حذاء Nike Air Max 95 هو الخيار المثالي لكل واحد يحب يجمع بين الراحة، الجودة، والأناقة في نفس الوقت. \n\nتصميمه العصري يعطيك مظهر شبابي مميز يخطف الأنظار، سواء كنت في الجامعة، في العمل، أو في خروجاتك اليومية 👟🔥.\n\n\nمصنوع من خامات أصلية عالية الجودة 🇩🇿، تضمن متانة كبيرة وراحة تدوم لساعات طويلة. النعل المزوّد بتقنية Air Max يوفر امتصاص ممتاز للصدمات ويمنحك إحساس خفيف وسلس مع كل خطوة. ما تحسش بالتعب حتى بعد يوم كامل من المشي أو النشاط.\n\nالستايل تاع Nike Air Max 95 يجمع بين البساطة والفخامة، يخليك دايماً في القمة من ناحية المظهر والثقة بالنفس. تقدر تلبسو مع أي لباس — سبور ولا كاجوال — ويزيد من أناقتك بطريقة طبيعية وملفتة في نفس الوقت ✨.\n\nمتوفّر بعدة ألوان ومقاسات (40، 41، 42، 43) باش تلقى النسخة اللي تناسبك تماماً وتعبّر على شخصيتك.\nاختار Nike Air Max 95 وعيش تجربة الراحة الحقيقية، الأداء العالي، والستايل اللي ما يتقارنش 💪🔥.",
+    "images": [
+        "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600&q=90&auto=format&fit=crop",
+        "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSODGIS48UeR6lAJVa9jRrcZG1bT-SW6WjwFo0k-jxDM2IxPbX0Zf5hl26zwKj608JA_iyg6EDNlO83z-Ny3G42aAUdN6805gyxHHv8onz_BWBl8SLXGdLcvg",
+        "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTYL_ypb_ceZPY9p1PYOqJXrbezMGnG_UuUjVFp7Z2ep6EtDIglOZpDheeGbMrj85XNo3fNyOq88WTjVabPhyyBmbCS37wG2rNx3c-cGZg4zETfCYR-LgbX2dQ"
+    ],
+    "attributes": {
+        "المقاس": [
+            "43",
+            "44",
+            "45"
+        ]
+    }
+};
+
+    const NETLIFY_FUNCTION_URL = "https://formdz.netlify.app/.netlify/functions/submit-mail-table"; // <-- IMPORTANT: REPLACE WITH YOUR URL
+
+    // ========================================================================
+    // --- 2. ALGERIA CITIES DATA ---
+    // ========================================================================
+    const algeriaCities = [
+      { "code": 1, "name": "Adrar", "communes": ["Adrar", "Reggane", "In Guezzam"] },
+      { "code": 2, "name": "Chlef", "communes": ["Chlef", "Ténès", "El Karimia"] },
+      { "code": 3, "name": "Laghouat", "communes": ["Laghouat", "Aflou", "Ksar El Hirane"] },
+      { "code": 4, "name": "Oum El Bouaghi", "communes": ["Oum El Bouaghi", "Aïn M'lila", "Aïn Fakroun"] },
+      { "code": 5, "name": "Batna", "communes": ["Batna", "Barika", "Arris"] },
+      { "code": 6, "name": "Béjaïa", "communes": ["Béjaïa", "Akbou", "Kherrata"] },
+      { "code": 7, "name": "Biskra", "communes": ["Biskra", "Tolga", "Sidi Okba"] },
+      { "code": 8, "name": "Béchar", "communes": ["Béchar", "Abadla", "Taghit"] },
+      { "code": 9, "name": "Blida", "communes": ["Blida", "Boufarik", "Larbaâ"] },
+      { "code": 10, "name": "Bouira", "communes": ["Bouira", "Lakhdaria", "Sour El Ghozlane"] },
+      { "code": 11, "name": "Tamanrasset", "communes": ["Tamanrasset", "In Salah", "In Guezzam"] },
+      { "code": 12, "name": "Tébessa", "communes": ["Tébessa", "Bir el-Ater", "El Aouinet"] },
+      { "code": 13, "name": "Tlemcen", "communes": ["Tlemcen", "Maghnia", "Ghazaouet"] },
+      { "code": 14, "name": "Tiaret", "communes": ["Tiaret", "Frenda", "Sougueur"] },
+      { "code": 15, "name": "Tizi Ouzou", "communes": ["Tizi Ouzou", "Azazga", "Draâ Ben Khedda"] },
+      { "code": 16, "name": "Alger", "communes": ["Alger Centre", "Bab Ezzouar", "Chéraga", "Draria", "Bir Mourad Raïs"] },
+      { "code": 17, "name": "Djelfa", "communes": ["Djelfa", "Messaad", "Aïn Oussara"] },
+      { "code": 18, "name": "Jijel", "communes": ["Jijel", "Taher", "El Milia"] },
+      { "code": 19, "name": "Sétif", "communes": ["Sétif", "El Eulma", "Aïn Oulmene"] },
+      { "code": 20, "name": "Saïda", "communes": ["Saïda", "Aïn El Hadjar", "Youb"] },
+      { "code": 21, "name": "Skikda", "communes": ["Skikda", "Azzaba", "Collo"] },
+      { "code": 22, "name": "Sidi Bel Abbès", "communes": ["Sidi Bel Abbès", "Tessala", "Sfisef"] },
+      { "code": 23, "name": "Annaba", "communes": ["Annaba", "El Bouni", "Sidi Amar"] },
+      { "code": 24, "name": "Guelma", "communes": ["Guelma", "Oued Zenati", "Héliopolis"] },
+      { "code": 25, "name": "Constantine", "communes": ["Constantine", "El Khroub", "Hamma Bouziane"] },
+      { "code": 26, "name": "Médéa", "communes": ["Médéa", "Berrouaghia", "Ksar Boukhari"] },
+      { "code": 27, "name": "Mostaganem", "communes": ["Mostaganem", "Aïn Tédelès", "Sidi Ali"] },
+      { "code": 28, "name": "M'Sila", "communes": ["M'Sila", "Bou Saâda", "Aïn El Melh"] },
+      { "code": 29, "name": "Mascara", "communes": ["Mascara", "Tighennif", "Sig"] },
+      { "code": 30, "name": "Ouargla", "communes": ["Ouargla", "Hassi Messaoud", "Touggourt"] },
+      { "code": 31, "name": "Oran", "communes": ["Oran", "Bir El Djir", "Es Senia"] },
+      { "code": 32, "name": "El Bayadh", "communes": ["El Bayadh", "Bougtob", "Brezina"] },
+      { "code": 33, "name": "Illizi", "communes": ["Illizi", "Djanet", "In Amenas"] },
+      { "code": 34, "name": "Bordj Bou Arreridj", "communes": ["Bordj Bou Arreridj", "Ras El Oued", "Aïn Taghrout"] },
+      { "code": 35, "name": "Boumerdès", "communes": ["Boumerdès", "Boudouaou", "Khemis El Khechna"] },
+      { "code": 36, "name": "El Tarf", "communes": ["El Tarf", "El Kala", "Ben Mehidi"] },
+      { "code": 37, "name": "Tindouf", "communes": ["Tindouf"] },
+      { "code": 38, "name": "Tissemsilt", "communes": ["Tissemsilt", "Theniet El Had", "Lardjem"] },
+      { "code": 39, "name": "El Oued", "communes": ["El Oued", "Guemar", "Robbah"] },
+      { "code": 40, "name": "Khenchela", "communes": ["Khenchela", "Kais", "Chechar"] },
+      { "code": 41, "name": "Souk Ahras", "communes": ["Souk Ahras", "Taoura", "Sedraia"] },
+      { "code": 42, "name": "Tipaza", "communes": ["Tipaza", "Kolea", "Cherchell"] },
+      { "code": 43, "name": "Mila", "communes": ["Mila", "Ferdjioua", "Chelghoum Laïd"] },
+      { "code": 44, "name": "Aïn Defla", "communes": ["Aïn Defla", "Khemis Miliana", "Miliana"] },
+      { "code": 45, "name": "Naâma", "communes": ["Naâma", "Mécheria", "Aïn Sefra"] },
+      { "code": 46, "name": "Aïn Témouchent", "communes": ["Aïn Témouchent", "Hammam Bou Hadjar", "Beni Saf"] },
+      { "code": 47, "name": "Ghardaïa", "communes": ["Ghardaïa", "Metlili", "El Menia"] },
+      { "code": 48, "name": "Relizane", "communes": ["Relizane", "Oued Rhiou", "Mazouna"] },
+      { "code": 49, "name": "Timimoun", "communes": ["Timimoun"] },
+      { "code": 50, "name": "Bordj Badji Mokhtar", "communes": ["Bordj Badji Mokhtar"] },
+      { "code": 51, "name": "Ouled Djellal", "communes": ["Ouled Djellal"] },
+      { "code": 52, "name": "Béni Abbès", "communes": ["Béni Abbès"] },
+      { "code": 53, "name": "In Salah", "communes": ["In Salah"] },
+      { "code": 54, "name": "In Guezzam", "communes": ["In Guezzam"] },
+      { "code": 55, "name": "Touggourt", "communes": ["Touggourt"] },
+      { "code": 56, "name": "Djanet", "communes": ["Djanet"] },
+      { "code": 57, "name": "El M'Ghair", "communes": ["El M'Ghair"] },
+      { "code": 58, "name": "El Menia", "communes": ["El Menia"] }
+    ];
+
+    // ========================================================================
+    // --- 3. APPLICATION LOGIC (DO NOT EDIT BELOW THIS LINE) ---
+    // ========================================================================
+
+    // State
+    let state = {
+        quantity: 1,
+        selectedAttributes: {},
+    };
+
+    // DOM Elements
+    const mainImage = document.getElementById('main-product-image');
+    const thumbContainer = document.getElementById('thumbnail-container');
+    const productName = document.getElementById('product-name');
+    const productPrice = document.getElementById('product-price');
+    const productDesc = document.getElementById('product-description');
+    const productSku = document.getElementById('product-sku');
+    const variantsContainer = document.getElementById('variants-container');
+    const quantityInput = document.getElementById('quantity');
+    const quantityPlusBtn = document.getElementById('quantity-plus');
+    const quantityMinusBtn = document.getElementById('quantity-minus');
+    const totalPriceEl = document.getElementById('total-price');
+    const orderForm = document.getElementById('order-form');
+    const submitButton = document.getElementById('submit-button');
+    const submitText = document.getElementById('submit-text');
+    const submitSpinner = document.getElementById('submit-spinner');
+    const wilayaSelect = document.getElementById('wilaya');
+    const communeSelect = document.getElementById('commune');
+    const successModal = document.getElementById('success-modal');
+    const errorModal = document.getElementById('error-modal');
+    const errorMessageEl = document.getElementById('error-message');
+
+    function formatCurrency(amount) {
+        return `${new Intl.NumberFormat('fr-DZ').format(amount)} د.ج`;
+    }
+
+    function updatePrice() {
+        const newTotal = productData.price * state.quantity;
+        totalPriceEl.textContent = formatCurrency(newTotal);
+    }
+    
+    function handleVariantSelect(key, value) {
+        state.selectedAttributes[key] = value;
+        renderVariants();
+    }
+
+    function renderVariants() {
+        variantsContainer.innerHTML = '';
+        Object.entries(productData.attributes).forEach(([key, values]) => {
+            const variantGroup = document.createElement('div');
+            variantGroup.className = "mb-4";
+            const label = document.createElement('label');
+            label.className = "block text-lg font-semibold text-gray-800 mb-2";
+            label.textContent = key;
+            variantGroup.appendChild(label);
+            
+            const optionsContainer = document.createElement('div');
+            optionsContainer.className = "flex flex-wrap gap-3";
+            variantGroup.appendChild(optionsContainer);
+
+            values.forEach(value => {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.textContent = value;
+                const isSelected = state.selectedAttributes[key] === value;
+                button.className = `px-4 py-2 border rounded-lg transition-colors text-sm font-medium ${isSelected ? 'bg-teal-600 text-white border-teal-600' : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'}`;
+                button.onclick = () => handleVariantSelect(key, value);
+                optionsContainer.appendChild(button);
+            });
+            variantsContainer.appendChild(variantGroup);
+        });
+    }
+
+    function populateWilayas() {
+        algeriaCities.forEach(wilaya => {
+            const option = document.createElement('option');
+            option.value = wilaya.name;
+            option.textContent = `${wilaya.code} - ${wilaya.name}`;
+            wilayaSelect.appendChild(option);
+        });
+    }
+    
+    function populateCommunes(wilayaName) {
+        communeSelect.innerHTML = '<option value="" disabled selected>اختر البلدية *</option>';
+        const selectedWilaya = algeriaCities.find(w => w.name === wilayaName);
+        if (selectedWilaya) {
+            communeSelect.disabled = false;
+            selectedWilaya.communes.forEach(commune => {
+                const option = document.createElement('option');
+                option.value = commune;
+                option.textContent = commune;
+                communeSelect.appendChild(option);
+            });
+        } else {
+            communeSelect.disabled = true;
+        }
+    }
+
+    function populateSeoAndSocialTags() {
+        // Basic SEO
+        document.title = productData.name;
+        document.getElementById('meta-description').setAttribute('content', productData.description.substring(0, 160));
+
+        // Open Graph
+        document.getElementById('og-title').setAttribute('content', productData.name);
+        document.getElementById('og-description').setAttribute('content', productData.description);
+        document.getElementById('og-image').setAttribute('content', productData.images[0] || '');
+        document.getElementById('og-url').setAttribute('content', window.location.href);
+
+        // Twitter
+        document.getElementById('twitter-title').setAttribute('content', productData.name);
+        document.getElementById('twitter-description').setAttribute('content', productData.description);
+        document.getElementById('twitter-image').setAttribute('content', productData.images[0] || '');
+
+        // JSON-LD for Google
+        const schema = {
+            "@context": "https://schema.org/",
+            "@type": "Product",
+            "name": productData.name,
+            "image": productData.images,
+            "description": productData.description,
+            "sku": productData.sku,
+            "offers": {
+                "@type": "Offer",
+                "url": window.location.href,
+                "priceCurrency": "DZD",
+                "price": productData.price,
+                "availability": "https://schema.org/InStock",
+                "priceValidUntil": new Date(new Date().getFullYear() + 1, 0, 1).toISOString() // Valid until start of next year
+            }
+        };
+        document.getElementById('product-json-ld').textContent = JSON.stringify(schema, null, 2);
+    }
+
+    async function handleFormSubmit(event) {
+        event.preventDefault();
+        
+        // --- Validation ---
+        const customerName = document.getElementById('customer_name').value.trim();
+        const customerPhone = document.getElementById('customer_phone').value.trim();
+        const wilaya = wilayaSelect.value;
+        const commune = communeSelect.value;
+        const streetAddress = document.getElementById('street_address').value.trim();
+
+        if (!customerName || !customerPhone || !wilaya || !commune || !streetAddress) {
+            showError("الرجاء ملء جميع الحقول المطلوبة (*).");
+            return;
+        }
+
+        for (const key of Object.keys(productData.attributes)) {
+            if (!state.selectedAttributes[key]) {
+                 showError(`الرجاء اختيار ${key}.`);
+                 return;
+            }
+        }
+        
+        // --- Show Loading State ---
+        setLoading(true);
+
+        // --- Prepare Data ---
+        const orderPayload = {
+            customerInfo: {
+                customer_name: customerName,
+                customer_phone: customerPhone,
+                street_address: streetAddress,
+                wilaya: wilaya,
+                commune: commune,
+                customer_email: null,
+            },
+            items: [{
+                product_id: productData.id,
+                quantity: state.quantity,
+                price: productData.price,
+                selected_attributes: state.selectedAttributes
+            }],
+            total_price: productData.price * state.quantity,
+            tracking: getTrackingData()
+        };
+
+        // --- API Call ---
+        try {
+            const response = await fetch(NETLIFY_FUNCTION_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(orderPayload)
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+            }
+
+            // --- Handle Success ---
+            await response.json();
+            showSuccess();
+            orderForm.reset();
+            document.getElementById('customer_name').value = '';
+            document.getElementById('customer_phone').value = '';
+            wilayaSelect.value = '';
+            populateCommunes('');
+            document.getElementById('street_address').value = '';
+            
+        } catch (error) {
+            console.error('Submission error:', error);
+            showError("لم نتمكن من إرسال طلبك. الرجاء المحاولة مرة أخرى.");
+        } finally {
+            setLoading(false);
+        }
+    }
+    
+    function getTrackingData() {
+        const getCookie = (name) => {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+            return null;
+        }
+        return {
+            fbp: getCookie('_fbp'),
+            fbc: getCookie('_fbc'),
+            userAgent: navigator.userAgent,
+            ipAddress: null, // IP should be captured server-side
+            pageUrl: window.location.href,
+            eventId: `evt_${Date.now()}`
+        };
+    }
+
+    function setLoading(isLoading) {
+        if (isLoading) {
+            submitButton.disabled = true;
+            submitText.classList.add('hidden');
+            submitSpinner.classList.remove('hidden');
+        } else {
+            submitButton.disabled = false;
+            submitText.classList.remove('hidden');
+            submitSpinner.classList.add('hidden');
+        }
+    }
+    
+    function showSuccess() {
+        successModal.classList.remove('hidden');
+    }
+
+    function showError(message) {
+        errorMessageEl.textContent = message;
+        errorModal.classList.remove('hidden');
+    }
+
+    function init() {
+        // Populate product details
+        productName.textContent = productData.name;
+        productPrice.textContent = formatCurrency(productData.price);
+        productDesc.textContent = productData.description;
+        productSku.textContent = `SKU: ${productData.sku}`;
+        
+        // Populate SEO tags
+        populateSeoAndSocialTags();
+        
+        // Set up images
+        mainImage.src = productData.images[0];
+        thumbContainer.innerHTML = productData.images.map((src, index) => 
+            `<img src="${src}" class="w-16 h-16 object-cover rounded-md cursor-pointer border-2 ${index === 0 ? 'border-teal-500' : 'border-transparent'}" data-index="${index}">`
+        ).join('');
+        
+        // Initial variant selection and render
+        Object.entries(productData.attributes).forEach(([key, values]) => {
+            state.selectedAttributes[key] = values[0];
+        });
+        renderVariants();
+        
+        // Populate locations
+        populateWilayas();
+        
+        // Set initial total price
+        updatePrice();
+
+        // Event Listeners
+        quantityPlusBtn.addEventListener('click', () => {
+            state.quantity++;
+            quantityInput.value = state.quantity;
+            updatePrice();
+        });
+
+        quantityMinusBtn.addEventListener('click', () => {
+            if (state.quantity > 1) {
+                state.quantity--;
+                quantityInput.value = state.quantity;
+                updatePrice();
+            }
+        });
+
+        wilayaSelect.addEventListener('change', (e) => {
+            populateCommunes(e.target.value);
+        });
+
+        thumbContainer.addEventListener('click', (e) => {
+            if(e.target.tagName === 'IMG') {
+                const index = e.target.dataset.index;
+                mainImage.src = productData.images[index];
+                // Update active thumbnail border
+                document.querySelectorAll('#thumbnail-container img').forEach(img => {
+                    img.classList.remove('border-teal-500');
+                    img.classList.add('border-transparent');
+                });
+                e.target.classList.add('border-teal-500');
+                e.target.classList.remove('border-transparent');
+            }
+        });
+        
+        submitButton.addEventListener('click', handleFormSubmit);
+        document.getElementById('customer_name').addEventListener('input', (e) => orderForm.checkValidity());
+        document.getElementById('customer_phone').addEventListener('input', (e) => orderForm.checkValidity());
+    }
+
+    init();
+});
+</script>
+
+</body>
+</html>
